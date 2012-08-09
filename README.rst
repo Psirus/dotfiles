@@ -10,6 +10,7 @@ but for some of the stuff I have already accumulated I simply forgot, *sorry*.
 
 Installation
 ------------
+Should be relatively painless::
 
     git clone git://github.com/psirus/dotfiles.git ~/.dotfiles
     cp .dotfiles/post-commit .dotfiles/.git/hooks/
@@ -21,6 +22,7 @@ Feedback:
 ---------
 Tell me what you think or whether you have any problems with my configs:
 `Issues <https://github.com/Psirus/dotfiles/issues>`_
+
 Thanks to:
 ----------
 
