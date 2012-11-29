@@ -56,6 +56,8 @@ alias newback="find /home/psirus/Bilder/Backgrounds/ -maxdepth 1 -type f \( -nam
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo shutdown -r now'
 
+alias tlmgr='sudo env PATH=$PATH tlmgr'
+
 ## functions ##
 # remindme 10m Pizza! 
 remindme() { sleep $1 && notify-send "$2" & }
