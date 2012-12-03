@@ -101,3 +101,5 @@ if $_isarch; then
 	# find explicitly installed packages, for clean-up purposes
 	alias explicits='pacman -Qei | grep Name | cut -c 18-'
 fi
+
+alias newSystemInstalls='sudo apt-get install fenics git mdadm vim-gnome'
