@@ -28,12 +28,6 @@ set guioptions-=lLrmtT
 
 filetype plugin indent on
 
-autocmd BufRead,BufNewFile *.org set filetype=markup
-autocmd BufRead,BufNewFile *.rst set filetype=markup
-autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd FileType tex set spell spelllang=en_gb
-autocmd FileType markup set spell spelllang=en_gb
-
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
