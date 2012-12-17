@@ -45,6 +45,7 @@ alias esyn='dict -d moby-thes'
 
 # get to Thesis folder
 alias thesis='cd ~/Studium/IPA/Thesis'
+alias GB='cd ~/Studium/GB'
 
 # quickly edit bashrc & vimrc
 alias vimrc='vim $HOME/.vimrc'
