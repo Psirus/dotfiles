@@ -60,6 +60,8 @@ alias reboot='sudo shutdown -r now'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
 
+alias merge='git mergetool -t gvimdiff'
+
 ## functions ##
 # remindme 10m Pizza! 
 remindme() { sleep $1 && notify-send "$2" & }
