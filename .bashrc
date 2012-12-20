@@ -20,7 +20,7 @@ bind '"\e[B"':history-search-forward
 PS1='\[\e[0;36m\]\u|\W≫ \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Skripte:/usr/local/texlive/2011/bin/x86_64-linux:$PATH
+PATH=~/Code/Skripte:/usr/local/texlive/2012/bin/x86_64-linux:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps
@@ -61,6 +61,8 @@ alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
 
 alias merge='git mergetool -t gvimdiff'
+
+alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 
 ## functions ##
 # remindme 10m Pizza! 
