@@ -1,3 +1,7 @@
+set nocompatible 
+filetype plugin indent on 
+syntax on
+
 colorscheme molokai
 set enc=utf-8
 " show overly long lines
@@ -13,8 +17,6 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-syntax on
-
 set modeline
 set modelines=1
 " write ~ and .swp wiles to tmp directory
@@ -26,13 +28,8 @@ au BufWinEnter ?* silent loadview
 set guioptions+=lLrmtT
 set guioptions-=lLrmtT
 
-filetype plugin indent on
-
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
 
-" map F11 to fullscreen (uses Compiz window matching to detect title)
-" TODO this definitely needs a better solution!
-map <silent> <F11> :set title titlestring=fullscreentitle
-map <silent> <F12> :set title titlestring=gVim
+set runtimepath+=~/.vim/ultisnips
