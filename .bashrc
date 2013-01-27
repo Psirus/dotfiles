@@ -28,10 +28,6 @@ HISTCONTROL=ignoredups:ignorespace:erasedumps
 # append to history
 shopt -s histappend
 
-# http://unix.stackexchange.com/questions/1288
-# After each command, save and reload history
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 alias ls='ls --color=auto'
 
 ## aliases ##
@@ -48,11 +44,8 @@ alias thesis='cd ~/Studium/IPA/Thesis'
 alias GB='cd ~/Studium/GB'
 
 # quickly edit bashrc & vimrc
-alias vimrc='vim $HOME/.vimrc'
-alias bashrc='vim $HOME/.bashrc'
-
-# set random new background
-alias newback="find /home/psirus/Bilder/Backgrounds/ -maxdepth 1 -type f \( -name '*.jpg' -o -name '*.png' \) -print0 | shuf -n1 -z | xargs -0 feh --bg-scale"
+alias vimrc='gvim $HOME/.vimrc'
+alias bashrc='gvim $HOME/.bashrc'
 
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo shutdown -r now'
@@ -88,23 +81,7 @@ up () {
 # e.g.: facts algeria | grep -A 5 Literacy
 facts () { 	dict -d world02 "$@" | less; }
 
-
 # check which process uses certain file
 psgrep () { ps aux | grep $1 | grep -v grep; }
 
-# print usage of the shell 
-usage () {
-	cut -f1 -d" " .bash_history | sort | uniq -c | sort -nr | head -n 30
-}
-
-## arch specific stuff
-_isarch=false
-[ -f /etc/arch-release ] && _isarch=true
-
-if $_isarch; then
-
-	# find explicitly installed packages, for clean-up purposes
-	alias explicits='pacman -Qei | grep Name | cut -c 18-'
-fi
-
-alias newSystemInstalls='sudo apt-get install fenics git mdadm vim-gnome ipython-notebook'
+alias newSystemInstalls='sudo apt-get install git mdadm vim-gnome ipython-notebook'
