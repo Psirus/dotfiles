@@ -57,6 +57,7 @@ alias merge='git mergetool -t gvimdiff'
 
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 
+alias open='xdg-open'
 ## functions ##
 # remindme 10m Pizza! 
 remindme() { sleep $1 && notify-send "$2" & }
