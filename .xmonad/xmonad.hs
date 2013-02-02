@@ -12,7 +12,7 @@ myLayout = avoidStruts (
     noBorders (fullscreenFull Full)
 
 main = xmonad $ desktopConfig
-	{ terminal = "xfce4-terminal"
+	{ terminal = "gnome-terminal"
     , focusedBorderColor = "#79a142"
     , layoutHook = myLayout
 	} `additionalKeys`
