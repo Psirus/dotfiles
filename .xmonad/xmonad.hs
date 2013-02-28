@@ -10,7 +10,7 @@ import XMonad.Config.Desktop
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.DynamicLog
 
-myWorkspaces = ["I","II","III","IV","V","VI","VII","VIII","IX"]
+myWorkspaces = ["music","chat","web","email","vim","misc","VII","VIII","IX"]
 
 myLayout = avoidStruts (
     Tall 1 (2/100) (1/2) |||
@@ -19,8 +19,11 @@ myLayout = avoidStruts (
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     { ppOutput = hPutStrLn h
-    , ppCurrent = dzenColor "#79a142" "#121212" . pad
+    , ppTitle = dzenColor "#79a142" "#121212"
+    , ppCurrent = wrap "[" "]" . dzenColor "#79a142" "#121212"
+    , ppVisible = wrap "[" "]"
     , ppWsSep = " | "
+    , ppLayout = (\ x -> "")
     }
 
 myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"

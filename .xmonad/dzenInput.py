@@ -2,29 +2,39 @@
 import time
 import sys
 import subprocess
+import dbus
 import re
+import matplotlib as mpl
+import matplotlib.cm as cm
+import matplotlib.colors as colors
+
+bus = dbus.SessionBus()
+banshee = bus.get_object("org.bansheeproject.Banshee", "/org/bansheeproject/Banshee/PlayerEngine")
+
+def getColor(x):
+    norm = mpl.colors.Normalize(vmin=-42, vmax=-9)
+    cmap = cm.RdYlGn_r
+    m = cm.ScalarMappable(norm=norm, cmap=cmap)
+    colorRGB = m.to_rgba(x)[0:3]
+    return colors.rgb2hex(colorRGB)
 
 def getMusicInfo():
-    artProcess = subprocess.Popen('banshee --query-artist', shell=True, stdout=subprocess.PIPE)
-    artist = artProcess.stdout.readline()
-    artProcess.terminate()
-    artist = artist[8:len(artist)-1]
-
-    titleProcess = subprocess.Popen('banshee --query-title', shell=True, stdout=subprocess.PIPE)
-    title = titleProcess.stdout.readline()
-    titleProcess.terminate()
-    title = title[7:len(title)-1]
+    currentTrack = banshee.GetCurrentTrack()
+    artist = str(currentTrack['artist'])
+    title = "^fg(#79a142)" + str(currentTrack['name'])
 
     volumeProcess = subprocess.Popen('amixer get Master | grep dB', shell=True, stdout=subprocess.PIPE)
     volume = volumeProcess.stdout.readline()
     regExp = re.compile('-(.*?)dB')
-    volume = " -" + regExp.search(volume).group(1) + "dB"
+    volumeDouble = -1.0 * float(regExp.search(volume).group(1))
+    fgcolor = getColor(volumeDouble)
     volumeProcess.terminate()
-    return artist + ": " + title + volume
+
+    return artist + ": " + title + " ^fg(" + fgcolor + ")" + str(volumeDouble) + "dB"
 
 while True:
     currentTime = time.strftime("%H:%M")
     musicInfo = getMusicInfo()
-    sys.stdout.write(currentTime + " " + musicInfo + "\n")
+    sys.stdout.write(musicInfo + "    ^fg(#ffffff)" + currentTime + "\n")
     sys.stdout.flush()
     time.sleep(1)
