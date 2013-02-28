@@ -47,9 +47,6 @@ alias GB='cd ~/Studium/GB'
 alias vimrc='gvim $HOME/.vimrc'
 alias bashrc='gvim $HOME/.bashrc'
 
-alias shutdown='sudo shutdown -h now'
-alias reboot='sudo shutdown -r now'
-
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
 
