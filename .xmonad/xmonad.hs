@@ -17,8 +17,10 @@ main = xmonad $ desktopConfig
     , layoutHook = myLayout
 	} `additionalKeys`
 	[ ((mod1Mask, xK_F4), kill)
-    , ((mod1Mask .|. shiftMask, xK_q), spawn "xfce4-session-logout")
-    , ((0, xF86XK_AudioNext), spawn "quodlibet --next")
-    , ((0, xF86XK_AudioPrev), spawn "quodlibet --previous")
-    , ((0, xF86XK_AudioPlay), spawn "quodlibet --play-pause")
+    , ((0, xF86XK_AudioNext), spawn "banshee --next")
+    , ((0, xF86XK_AudioPrev), spawn "banshee --restart-or-previous")
+    , ((0, xF86XK_AudioPlay), spawn "banshee --toggle-playing")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 3dB-")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 3dB+")
+    , ((mod1Mask, xK_p), spawn "dmenu_run")
     ]
