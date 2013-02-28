@@ -5,11 +5,12 @@ import XMonad.Util.Run
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import XMonad.Config.Desktop
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.DynamicLog
 
-myWorkspaces = ["music","firefox","chat","vim"]
+myWorkspaces = ["I","II","III","IV","V","VI","VII","VIII","IX"]
 
 myLayout = avoidStruts (
     Tall 1 (2/100) (1/2) |||
@@ -22,9 +23,9 @@ myLogHook h = dynamicLogWithPP $ defaultPP
     , ppWsSep = " | "
     }
 
-myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680'"
+myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
 
-myLogDzen = "dzen2 -x '0' -y '0' -h '24' -w '1680'"
+myLogDzen = "dzen2 -x '0' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
 main = do
     h <- spawnPipe myLogDzen
     spawnPipe myStatusDzen
@@ -33,6 +34,7 @@ main = do
       , focusedBorderColor = "#79a142"
       , layoutHook = myLayout
       , logHook = myLogHook h
+      , startupHook = setWMName "LG3D"
       , workspaces = myWorkspaces
 	  } `additionalKeys`
 	  [ ((mod1Mask, xK_F4), kill)
