@@ -20,8 +20,8 @@ def getColor(x):
 
 def getMusicInfo():
     currentTrack = banshee.GetCurrentTrack()
-    artist = str(currentTrack['artist'])
-    title = "^fg(#79a142)" + str(currentTrack['name'])
+    artist = currentTrack['artist'].encode('utf-8')
+    title = "^fg(#79a142)" + currentTrack['name'].encode('utf-8')
 
     volumeProcess = subprocess.Popen('amixer get Master | grep dB', shell=True, stdout=subprocess.PIPE)
     volume = volumeProcess.stdout.readline()
