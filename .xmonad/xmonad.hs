@@ -26,17 +26,24 @@ myLogHook h = dynamicLogWithPP $ defaultPP
     , ppLayout = (\ x -> "")
     }
 
-myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
+myManageHook = composeAll
+    [ className =? "Pidgin" --> doFloat
+    , className =? "Skype" --> doFloat
+    ]
 
+myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
 myLogDzen = "dzen2 -x '0' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
+
 main = do
     h <- spawnPipe myLogDzen
     spawnPipe myStatusDzen
     xmonad $ desktopConfig
 	  { terminal = "gnome-terminal"
+      , modMask = mod4Mask
       , focusedBorderColor = "#79a142"
       , layoutHook = myLayout
       , logHook = myLogHook h
+      , manageHook = myManageHook
       , startupHook = setWMName "LG3D"
       , workspaces = myWorkspaces
 	  } `additionalKeys`
