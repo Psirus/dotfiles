@@ -19,6 +19,9 @@ def getColor(x):
     return colors.rgb2hex(colorRGB)
 
 def getMusicInfo():
+    if banshee.GetCurrentState() == dbus.String(u'idle'):
+        return "Not playing anything"
+
     currentTrack = banshee.GetCurrentTrack()
     artist = currentTrack['artist'].encode('utf-8')
     title = "^fg(#79a142)" + currentTrack['name'].encode('utf-8')
@@ -32,6 +35,7 @@ def getMusicInfo():
 
     return artist + ": " + title + " ^fg(" + fgcolor + ")" + str(volumeDouble) + "dB"
 
+time.sleep(5)
 while True:
     currentTime = time.strftime("%H:%M")
     musicInfo = getMusicInfo()
