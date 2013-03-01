@@ -8,8 +8,8 @@ I will continue to pick & choose bits from all over the internet whenever I
 come across something I think is interesting. I'll try to attribute the source,
 but for some of the stuff I have already accumulated I simply forgot, *sorry*.
 
-Installation
-------------
+Installation:
+-------------
 Should be relatively painless::
 
     git clone git://github.com/psirus/dotfiles.git ~/.dotfiles
@@ -17,6 +17,12 @@ Should be relatively painless::
 
 The post-commit hook will link all the hidden dotfiles in this directory from
 your home directory.
+
+Features:
+---------
+At the moment this is a relatively barebones xmonad config, but it does
+provide nice dzen2 output for the banshee media player, and colormapped
+volume info. This in an easily modifiable python script.
 
 Feedback:
 ---------
