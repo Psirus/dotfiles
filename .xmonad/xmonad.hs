@@ -39,7 +39,6 @@ main = do
     spawnPipe myStatusDzen
     xmonad $ desktopConfig
 	  { terminal = "gnome-terminal"
-      , modMask = mod4Mask
       , focusedBorderColor = "#79a142"
       , layoutHook = myLayout
       , logHook = myLogHook h
