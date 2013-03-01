@@ -12,7 +12,7 @@ bus = dbus.SessionBus()
 banshee = bus.get_object("org.bansheeproject.Banshee", "/org/bansheeproject/Banshee/PlayerEngine")
 
 def getColor(x):
-    norm = mpl.colors.Normalize(vmin=-42, vmax=-9)
+    norm = mpl.colors.Normalize(vmin=-42, vmax=-0)
     cmap = cm.RdYlGn_r
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     colorRGB = m.to_rgba(x)[0:3]
@@ -28,8 +28,8 @@ def getMusicInfo():
 
     volumeProcess = subprocess.Popen('amixer get Master | grep dB', shell=True, stdout=subprocess.PIPE)
     volume = volumeProcess.stdout.readline()
-    regExp = re.compile('-(.*?)dB')
-    volumeDouble = -1.0 * float(regExp.search(volume).group(1))
+    volString = re.findall("\d*.\d*dB", volume)[0][0:-2]
+    volumeDouble = -1.0 * float(volString)
     fgcolor = getColor(volumeDouble)
     volumeProcess.terminate()
 
