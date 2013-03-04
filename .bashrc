@@ -57,7 +57,7 @@ alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias open='xdg-open'
 ## functions ##
 # remindme 10m Pizza! 
-remindme() { sleep $1 && notify-send "$2" & }
+remindme() { sleep $1 && notify-send "$2";}
 
 # for quick command line calculations
 calc() { bc -l <<<"$@"; }
