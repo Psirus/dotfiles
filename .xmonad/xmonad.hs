@@ -10,7 +10,8 @@ import XMonad.Config.Desktop
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.DynamicLog
 
-myWorkspaces = ["music","chat","web","email","vim","misc","VII","VIII","IX"]
+myWorkspaces = ["^i(/home/psirus/.xmonad/icons/" ++ icon ++ ".xbm)"
+                 | icon <- ["music","chat","web","thunderbird","vim","film"]]
 
 myLayout = avoidStruts (
     Tall 1 (2/100) (1/2) |||
@@ -19,9 +20,9 @@ myLayout = avoidStruts (
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     { ppOutput = hPutStrLn h
-    , ppTitle = dzenColor "#79a142" "#121212"
-    , ppCurrent = wrap "[" "]" . dzenColor "#79a142" "#121212"
-    , ppVisible = wrap "[" "]"
+    , ppTitle = dzenColor "#79a142" "#272822"
+    , ppCurrent = dzenColor "#79a142" "#272822"
+    , ppVisible = dzenColor "#8da171" "#272822"
     , ppWsSep = " | "
     , ppLayout = (\ x -> "")
     }
@@ -32,11 +33,13 @@ myManageHook = composeAll
     ]
 
 myStatusDzen = "~/.xmonad/dzenInput.py | dzen2 -x '1680' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
-myLogDzen = "dzen2 -x '0' -y '0' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
+myPymodoroDzen = "~/.xmonad/pymodoro.py | dzen2 -x '1680' -y '24' -h '24' -w '1680' -fn 'DejaVu Sans:size=10'"
+myLogDzen = "dzen2 -x '0' -y '0' -h '24' -w '1680' -bg '#272822' -fn 'DejaVu Sans:size=10'"
 
 main = do
     h <- spawnPipe myLogDzen
     spawnPipe myStatusDzen
+--    spawnPipe myPymodoroDzen
     xmonad $ desktopConfig
 	  { terminal = "gnome-terminal"
       , focusedBorderColor = "#79a142"

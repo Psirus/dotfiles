@@ -34,6 +34,9 @@ alias ls='ls --color=auto'
 # append to longer lasting commands to alert me when they finish
 alias finished='notify-send "Script has finished"'
 
+# running the standard rm can be dangerous for me, I'm often careless
+alias rm='trash'
+alias showtrash='trash-list | sort'
 # easy translations and synonym finding on the command line
 alias d2e='dict -d deu-eng'
 alias e2d='dict -d eng-deu'
