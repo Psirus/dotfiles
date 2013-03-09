@@ -17,7 +17,7 @@ bind '"\e[A"':history-search-backward
 bind '"\e[B"':history-search-forward
 
 # fuck tty compability
-PS1='\[\e[0;36m\]\u|\W≫ \[\e[m\]'
+PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
 PATH=~/Code/Skripte:~/.cabal/bin:/usr/local/texlive/2012/bin/x86_64-linux:$PATH
