@@ -1,2 +1,4 @@
 .xmonad/*
 !.xmonad/xmonad.hs
+!.xmonad/dzenInput.py
+!.xmonad/icons

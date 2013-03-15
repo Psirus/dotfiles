@@ -17,10 +17,10 @@ bind '"\e[A"':history-search-backward
 bind '"\e[B"':history-search-forward
 
 # fuck tty compability
-PS1='\[\e[0;36m\]\u|\W≫ \[\e[m\]'
+PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Skripte:/usr/local/texlive/2012/bin/x86_64-linux:$PATH
+PATH=~/Code/Skripte:~/.cabal/bin:/usr/local/texlive/2012/bin/x86_64-linux:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps
@@ -34,6 +34,9 @@ alias ls='ls --color=auto'
 # append to longer lasting commands to alert me when they finish
 alias finished='notify-send "Script has finished"'
 
+# running the standard rm can be dangerous for me, I'm often careless
+alias rm='trash'
+alias showtrash='trash-list | sort'
 # easy translations and synonym finding on the command line
 alias d2e='dict -d fd-deu-eng'
 alias e2d='dict -d fd-eng-deu'
@@ -47,9 +50,6 @@ alias GB='cd ~/Studium/GB'
 alias vimrc='gvim $HOME/.vimrc'
 alias bashrc='gvim $HOME/.bashrc'
 
-alias shutdown='sudo shutdown -h now'
-alias reboot='sudo shutdown -r now'
-
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
 
@@ -60,7 +60,7 @@ alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias open='xdg-open'
 ## functions ##
 # remindme 10m Pizza! 
-remindme() { sleep $1 && notify-send "$2" & }
+remindme() { sleep $1 && notify-send "$2";}
 
 # for quick command line calculations
 calc() { bc -l <<<"$@"; }
