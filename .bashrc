@@ -35,9 +35,9 @@ alias ls='ls --color=auto'
 alias finished='notify-send "Script has finished"'
 
 # easy translations and synonym finding on the command line
-alias d2e='dict -d deu-eng'
-alias e2d='dict -d eng-deu'
-alias esyn='dict -d moby-thes'
+alias d2e='dict -d fd-deu-eng'
+alias e2d='dict -d fd-eng-deu'
+alias esyn='dict -d moby-thesaurus'
 
 # get to Thesis folder
 alias thesis='cd ~/Studium/IPA/Thesis'
