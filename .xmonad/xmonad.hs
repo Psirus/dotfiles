@@ -68,7 +68,7 @@ main = do
     spawnPipe $ myStatusDzen hostname
 --    spawnPipe myPymodoroDzen
     xmonad $ desktopConfig
-      { terminal = "urxvt"
+      { terminal = "gnome-terminal"
       , focusedBorderColor = "#79a142"
       , layoutHook = myLayout
       , logHook = myLogHook h
@@ -78,6 +78,7 @@ main = do
       , workspaces = myWorkspaces
 	  } `additionalKeys`
 	  [ ((mod1Mask, xK_F4), kill)
+      , ((mod1Mask, xK_x), spawn "sleep 0.2 && xset dpms force off")
       , ((0, xF86XK_AudioNext), spawn "banshee --next")
       , ((0, xF86XK_AudioPrev), spawn "banshee --restart-or-previous")
       , ((0, xF86XK_AudioPlay), spawn "banshee --toggle-playing")
