@@ -41,10 +41,8 @@ alias esyn='dict -d moby-thes'
 alias GB='cd ~/Studium/GB'
 
 alias tlmgr='sudo env PATH=$PATH tlmgr'
-alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
 
 alias merge='git mergetool -t gvimdiff'
-alias virtLubuntu='kvm -hda ~/Code/lubuntu.img -vga vmware -m 1024'
 
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 
@@ -75,5 +73,3 @@ facts () { 	dict -d world02 "$@" | less; }
 
 # check which process uses certain file
 psgrep () { ps aux | grep $1 | grep -v grep; }
-
-alias newSystemInstalls='sudo apt-get install git mdadm vim-gnome ipython-notebook'
