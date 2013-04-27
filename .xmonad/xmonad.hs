@@ -4,6 +4,7 @@ import System.Exit
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.Place
 import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
@@ -145,7 +146,8 @@ myLayout = tiled ||| Mirror tiled ||| Full
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
-    , className =? "Xfrun4"         --> doFloat
+    -- place Xfrun4 in the middle
+    , className =? "Xfrun4"         --> placeHook (smart (0.5, 0.5)) <+> doFloat
     , className =? "Pidgin"         --> doFloat
     , className =? "Skype"          --> doFloat
     , resource  =? "desktop_window" --> doIgnore
