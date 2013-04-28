@@ -1,6 +1,7 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
@@ -132,7 +133,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = tiled ||| Mirror tiled ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
