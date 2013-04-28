@@ -1,13 +1,15 @@
 import XMonad
-import Data.Monoid
-import System.Exit
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Fullscreen
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.Place
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Fullscreen
+import XMonad.Prompt
+import XMonad.Prompt.AppendFile
+import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
+import System.Exit
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -107,6 +109,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Previous track
     , ((0,           xF86XK_AudioPrev), gmusiccontrol "Previous")
+    
+    -- Prompt to append a sinle line of text to a file
+    , ((modm .|. controlMask, xK_n   ), appendFilePrompt defaultXPConfig "/home/psirus/Dokumente/notes/notes.md")
     ]
     ++
 
