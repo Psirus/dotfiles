@@ -2,6 +2,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Fullscreen
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
@@ -133,7 +134,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = tiled ||| Mirror tiled ||| noBorders Full
+myLayout = avoidStruts (
+    tiled ||| 
+    Mirror tiled ) |||  
+    noBorders (fullscreenFull Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -174,7 +178,7 @@ defaults = defaultConfig {
         focusedBorderColor = myFocusedBorderColor,
         keys               = myKeys,
         mouseBindings      = myMouseBindings,
-        layoutHook         = avoidStruts $ myLayout,
+        layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
