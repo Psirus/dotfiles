@@ -33,13 +33,18 @@ myFocusedBorderColor = "#2b7bcf"
 
 gmusiccontrol action = spawn $ "dbus-send --dest=org.mpris.MediaPlayer2.gmusicbrowser /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player." ++ action
 
+appendfile = do
+    appendFilePrompt defaultXPConfig notesFile
+    where
+        notesFile = "/home/psirus/Dokumente/notes/notes.md"
+
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch xfrun4
-    , ((modm,               xK_p     ), spawn "xfrun4")
+    , ((modm,               xK_p     ), spawn "xfrun4 --disable-server")
 
     -- close focused window
     , ((modm,               xK_F4    ), kill)
@@ -83,11 +88,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
-    -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+--    -- Increment the number of windows in the master area
+--    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
+--
+--    -- Deincrement the number of windows in the master area
+--    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
@@ -111,7 +116,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,           xF86XK_AudioPrev), gmusiccontrol "Previous")
     
     -- Prompt to append a sinle line of text to a file
-    , ((modm .|. controlMask, xK_n   ), appendFilePrompt defaultXPConfig "/home/psirus/Dokumente/notes/notes.md")
+    , ((modm .|. controlMask, xK_n   ), appendfile)
     ]
     ++
 
