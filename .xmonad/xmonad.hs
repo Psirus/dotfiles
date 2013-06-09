@@ -3,7 +3,9 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.Place
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Layout.Fullscreen
 import XMonad.Prompt
 import XMonad.Prompt.AppendFile
@@ -14,7 +16,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "xfce4-terminal"
+myTerminal      = "gnome-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse = True
@@ -22,7 +24,7 @@ myFocusFollowsMouse = True
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses = False
 
-myBorderWidth   = 1
+myBorderWidth   = 2
 
 myModMask       = mod1Mask
 
@@ -30,8 +32,6 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#2b7bcf"
-
-gmusiccontrol action = spawn $ "dbus-send --dest=org.mpris.MediaPlayer2.gmusicbrowser /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player." ++ action
 
 appendfile = do
     appendFilePrompt defaultXPConfig notesFile
@@ -44,7 +44,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch xfrun4
-    , ((modm,               xK_p     ), spawn "xfrun4 --disable-server")
+    , ((modm,               xK_p     ), spawn "dmenu_run")
 
     -- close focused window
     , ((modm,               xK_F4    ), kill)
@@ -107,14 +107,20 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_x     ), spawn "sleep 0.2 && xset dpms force off")
 
     -- Toggle Play/Pause
-    , ((0,           xF86XK_AudioPlay), gmusiccontrol "PlayPause")
+    , ((0,           xF86XK_AudioPlay), spawn "quodlibet --play-pause")
 
     -- Next track
-    , ((0,           xF86XK_AudioNext), gmusiccontrol "Next")
+    , ((0,           xF86XK_AudioNext), spawn "quodlibet --next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), gmusiccontrol "Previous")
-    
+    , ((0,           xF86XK_AudioPrev), spawn "quodlibet --previous") 
+
+    -- Lower Volume
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 3dB-")
+
+    -- Raise Volume
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 3dB+")
+
     -- Prompt to append a sinle line of text to a file
     , ((modm .|. controlMask, xK_n   ), appendfile)
     ]
@@ -144,7 +150,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts (
+myLayout = avoidStruts $ smartSpacing 7 $ (
     tiled ||| 
     Mirror tiled ) |||  
     noBorders (fullscreenFull Full) 
@@ -161,8 +167,6 @@ myLayout = avoidStruts (
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
-    -- place Xfrun4 in the middle
-    , className =? "Xfrun4"         --> placeHook (smart (0.5, 0.5)) <+> doFloat
     , className =? "Pidgin"         --> doFloat
     , className =? "Skype"          --> doFloat
     , resource  =? "desktop_window" --> doIgnore
@@ -175,7 +179,17 @@ myLogHook = ewmhDesktopsLogHook
 -- needed for matlab to work with XMonad
 myStartupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
 
-main = xmonad defaults
+myPP = xmobarPP { 
+    ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
+    ppTitle = xmobarColor "#429942" "",
+    ppSep = " | ",
+    ppOrder = \(ws:_:t:_) -> [ws,t]
+    }
+
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+myXMobar = statusBar "xmobar" myPP toggleStrutsKey
+
+main = xmonad =<< myXMobar defaults
 
 defaults = defaultConfig {
         terminal           = myTerminal,
