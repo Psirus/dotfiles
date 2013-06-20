@@ -1,3 +1,5 @@
+gtk-theme-name = "Ambiance"
+gtk-icon-theme-name="Humanity"
 style "vimfix" {
     bg[NORMAL] = "#1B1D1E"
 }

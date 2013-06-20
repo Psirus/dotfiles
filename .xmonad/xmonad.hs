@@ -24,7 +24,7 @@ myFocusFollowsMouse = True
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses = False
 
-myBorderWidth   = 2
+myBorderWidth   = 1
 
 myModMask       = mod1Mask
 
@@ -150,7 +150,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts $ smartSpacing 7 $ (
+myLayout = avoidStruts $ (
     tiled ||| 
     Mirror tiled ) |||  
     noBorders (fullscreenFull Full) 
@@ -166,7 +166,6 @@ myLayout = avoidStruts $ smartSpacing 7 $ (
 
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
     , className =? "Pidgin"         --> doFloat
     , className =? "Skype"          --> doFloat
     , resource  =? "desktop_window" --> doIgnore

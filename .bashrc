@@ -39,6 +39,7 @@ alias e2d='dict -d fd-eng-deu'
 alias esyn='dict -d moby-thes'
 
 alias GB='cd ~/Studium/GB'
+alias mbs='cd ~/Code/Python/PyMbs'
 
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 
