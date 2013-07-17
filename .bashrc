@@ -20,7 +20,7 @@ bind '"\e[B"':history-search-forward
 PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Skripte:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:$PATH
+PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps
@@ -37,9 +37,10 @@ alias finished='notify-send "Script has finished"'
 # easy translations and synonym finding on the command line
 alias d2e='dict -d fd-deu-eng'
 alias e2d='dict -d fd-eng-deu'
-alias esyn='dict -d moby-thesaurus'
+alias esyn='dict -d moby-thes'
 
 alias GB='cd ~/Studium/GB'
+alias mbs='cd ~/Code/Python/PyMbs'
 
 if [ "${HOST}" == "PCpohl" ]; then
     alias ipy='ipython notebook --pylab inline ~/home_server/Code/Python/'
@@ -79,5 +80,3 @@ facts () { 	dict -d world02 "$@" | less; }
 
 # check which process uses certain file
 psgrep () { ps aux | grep $1 | grep -v grep; }
-
-alias newSystemInstalls='sudo apt-get install git mdadm vim-gnome ipython-notebook'

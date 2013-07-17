@@ -20,9 +20,8 @@ your home directory.
 
 Features:
 ---------
-At the moment this is a relatively barebones xmonad config, but it does
-provide nice dzen2 output for the banshee media player, and colormapped
-volume info. This in an easily modifiable python script.
+Almost *stock* xmonad experience, but with integration for Xfce. Also,
+I've defined keybindings for gmusicbrowser.
 
 Feedback:
 ---------

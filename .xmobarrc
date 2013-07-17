@@ -1,0 +1,12 @@
+Config { font = "xft:DejaVu Sans-8:"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run StdinReader
+                    , Run Date "%d.%m - %H:%M:%S" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ <fc=#429942>%date%</fc>"
+}
