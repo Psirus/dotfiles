@@ -5,6 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+HOST=$(hostname)
 ## Bash configuration ##
 
 # enable bash_completion
@@ -19,7 +20,7 @@ bind '"\e[B"':history-search-forward
 PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Skripte:~/.cabal/bin:/usr/local/texlive/2012/bin/x86_64-linux:$PATH
+PATH=~/Code/Skripte:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps
@@ -40,9 +41,13 @@ alias esyn='dict -d moby-thesaurus'
 
 alias GB='cd ~/Studium/GB'
 
-alias tlmgr='sudo env PATH=$PATH tlmgr'
-alias ipy='ipython notebook --pylab inline ~/Code/Ipython/'
+if [ "${HOST}" == "PCpohl" ]; then
+    alias ipy='ipython notebook --pylab inline ~/home_server/Code/Python/'
+else
+    alias ipy='ipython notebook --pylab inline ~/Code/Python/'
+fi
 
+alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
 
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'

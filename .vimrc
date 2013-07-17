@@ -6,7 +6,7 @@ colorscheme molokai
 set enc=utf-8
 " show overly long lines
 set cc=80
-
+let g:tex_flavor='latex'
 " leave 10 lines at top/bottom while scrolling
 set scrolloff=10
 set shellcmdflag=-ic
@@ -28,6 +28,7 @@ au BufWinEnter ?* silent loadview
 set guioptions+=lLrmtT
 set guioptions-=lLrmtT
 
+set tags=./tags;~/home_server/workspace/3D_XFEM
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
