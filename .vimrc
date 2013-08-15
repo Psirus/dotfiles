@@ -1,6 +1,15 @@
 set nocompatible 
 filetype off
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Plugins:
+Bundle 'gmarik/vundle'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'garbas/vim-snipmate'
+
 syntax on
 filetype plugin indent on 
 
