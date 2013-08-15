@@ -1,5 +1,6 @@
-gtk-theme-name = "Ambiance"
-gtk-icon-theme-name="Humanity"
+gtk-theme-name="Faience"
+gtk-icon-theme-name="Faience-Azur"
+gtk-font-name="Droid Sans Mono 11"
 style "vimfix" {
     bg[NORMAL] = "#1B1D1E"
 }
