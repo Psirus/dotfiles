@@ -1,12 +1,14 @@
-Config { font = "xft:DejaVu Sans-8:"
+Config { font = "xft:DejaVu Sans-10:"
        , bgColor = "black"
-       , fgColor = "grey"
+       , fgColor = "#aaaaaa"
+       , alpha = 200
        , position = Top
        , lowerOnStart = True
        , commands = [ Run StdinReader
                     , Run Date "%d.%m - %H:%M:%S" "date" 10
+                    , Run Com "nowplaying.sh" ["-a", "l", "-m", "80"] "np" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#429942>%date%</fc>"
+       , template = "%StdinReader% }{ <fc=#2b7bcf>%np% | %date% </fc>"
 }

@@ -1,0 +1,40 @@
+alignment bottom_left
+background yes
+border_width 1
+cpu_avg_samples 2
+default_color white 
+default_outline_color white
+default_shade_color white
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont Flux:size=19
+gap_x 1800
+gap_y 50
+minimum_size 880 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type desktop
+own_window_transparent yes
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+TEXT
+${color #000000}
+Uptime: $uptime ${tab 200 0} Artist: ${execi 10 ncmpcpp --now-playing "%a"}
+${voffset -10}
+RAM: $mem ${tab 200 0} Title: ${execi 10 ncmpcpp --now-playing "%t"}
+${voffset -10}
+CPU:$cpu% ${tab 200 0} Album: ${execi 10 ncmpcpp --now-playing "%b"}

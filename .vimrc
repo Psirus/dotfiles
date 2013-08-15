@@ -4,7 +4,7 @@ filetype off
 syntax on
 filetype plugin indent on 
 
-if $COLORTERM == 'gnome-terminal'
+if $COLORTERM == 'xfce4-terminal'
     set t_Co=256
 endif
 

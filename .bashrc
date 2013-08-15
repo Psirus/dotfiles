@@ -20,7 +20,7 @@ bind '"\e[B"':history-search-forward
 PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:$PATH
+PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps
@@ -54,6 +54,8 @@ alias merge='git mergetool -t gvimdiff'
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 
 alias open='xdg-open'
+
+alias feh='feh -F'
 ## functions ##
 # remindme 10m Pizza! 
 remindme() { sleep $1 && notify-send "$2";}

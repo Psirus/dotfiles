@@ -9,6 +9,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Fullscreen
 import XMonad.Prompt
 import XMonad.Prompt.AppendFile
+import XMonad.Util.Loggers
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
@@ -16,7 +17,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "gnome-terminal"
+myTerminal      = "urxvt"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse = True
@@ -28,7 +29,8 @@ myBorderWidth   = 1
 
 myModMask       = mod1Mask
 
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+--myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#2b7bcf"
@@ -107,19 +109,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_x     ), spawn "sleep 0.2 && xset dpms force off")
 
     -- Toggle Play/Pause
-    , ((0,           xF86XK_AudioPlay), spawn "quodlibet --play-pause")
+    , ((0,           xF86XK_AudioPlay), spawn "ncmpcpp toggle")
 
     -- Next track
-    , ((0,           xF86XK_AudioNext), spawn "quodlibet --next")
+    , ((0,           xF86XK_AudioNext), spawn "ncmpcpp next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), spawn "quodlibet --previous") 
+    , ((0,           xF86XK_AudioPrev), spawn "ncmpcpp prev") 
 
     -- Lower Volume
-    , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 3dB-")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -c 0 set Master 3dB-")
 
     -- Raise Volume
-    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 3dB+")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -c 0 set Master 3dB+")
 
     -- Prompt to append a sinle line of text to a file
     , ((modm .|. controlMask, xK_n   ), appendfile)
@@ -165,11 +167,10 @@ myLayout = avoidStruts $ (
      delta   = 3/100
 
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Pidgin"         --> doFloat
+    [ className =? "Pidgin"         --> doFloat
+    , appName =? "ncmpcpp"          --> placeHook (smart (0.95, 0.95)) <+> doFloat
     , className =? "Skype"          --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    ]
 
 myEventHook = ewmhDesktopsEventHook
 
@@ -178,9 +179,10 @@ myLogHook = ewmhDesktopsLogHook
 -- needed for matlab to work with XMonad
 myStartupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
 
-myPP = xmobarPP { 
-    ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
-    ppTitle = xmobarColor "#429942" "",
+myPP = defaultPP { 
+    ppCurrent = xmobarColor "#2b7bc2" "" . wrap "«" "»",
+    ppVisible = wrap "«" "»",
+    ppTitle = xmobarColor "#2b7bc2" "",
     ppSep = " | ",
     ppOrder = \(ws:_:t:_) -> [ws,t]
     }
