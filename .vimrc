@@ -4,11 +4,14 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Plugins:
+" Plugin management:
 Bundle 'gmarik/vundle'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
+" Snippets
 Bundle 'garbas/vim-snipmate'
+" Syntax checking
+Bundle 'scrooloose/syntastic'
 
 syntax on
 filetype plugin indent on 
