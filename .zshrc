@@ -4,8 +4,8 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory autocd extendedglob HIST_IGNORE_DUPS
 
+setopt correctall
 unsetopt beep
-bindkey -v
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
