@@ -20,7 +20,7 @@ bind '"\e[B"':history-search-forward
 PS1=$'\[\e[0;36m\]\u|\W\xc2\xbb \[\e[m\]'
 
 # my personal scripts & texlive utilities
-PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
 
 # no duplicates in the history
 HISTCONTROL=ignoredups:ignorespace:erasedumps

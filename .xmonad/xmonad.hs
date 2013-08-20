@@ -38,7 +38,7 @@ myFocusedBorderColor = "#2b7bcf"
 appendfile = do
     appendFilePrompt defaultXPConfig notesFile
     where
-        notesFile = "/home/psirus/Dokumente/notes/notes.md"
+        notesFile = "/home/psirus/Dokumente/Diverses/notes.md"
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 

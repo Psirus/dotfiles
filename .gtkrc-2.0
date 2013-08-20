@@ -1,6 +1,6 @@
 gtk-theme-name="Faience"
 gtk-icon-theme-name="Faience-Azur"
-gtk-font-name="Droid Sans Mono 11"
+gtk-font-name="Droid Sans 10"
 style "vimfix" {
     bg[NORMAL] = "#1B1D1E"
 }
