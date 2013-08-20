@@ -28,3 +28,10 @@ alias -s pdf='zathura'
 function mcd() {
   mkdir -p "$1" && cd "$1";
 }
+
+bindkey '^[[7~' vi-beginning-of-line   # Home
+bindkey '^[[8~' vi-end-of-line         # End of Line
+bindkey '^[[2~' beep                   # Insert
+bindkey '^[[3~' delete-char            # Del
+bindkey '^[[5~' vi-backward-blank-word # Page Up
+bindkey '^[[6~' vi-forward-blank-word  # Page Down
