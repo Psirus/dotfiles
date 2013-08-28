@@ -15,7 +15,8 @@ Should be relatively painless::
     git clone https://github.com/Psirus/dotfiles.git ~/.dotfiles
     cd .dotfiles && ./link.sh
 
-The `link.sh` script will link the dotifles into your home directory.
+The `init.sh` script will link the dotifles into your home directory, and
+try to setup vundle for vim.
 
 Features:
 ---------
