@@ -17,7 +17,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "urxvt"
+myTerminal      = "xfce4-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse = True
@@ -109,13 +109,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_x     ), spawn "sleep 0.2 && xset dpms force off")
 
     -- Toggle Play/Pause
-    , ((0,           xF86XK_AudioPlay), spawn "ncmpcpp toggle")
+    , ((0,           xF86XK_AudioPlay), spawn "banshee --toggle-playing")
 
     -- Next track
-    , ((0,           xF86XK_AudioNext), spawn "ncmpcpp next")
+    , ((0,           xF86XK_AudioNext), spawn "banshee --next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), spawn "ncmpcpp prev") 
+    , ((0,           xF86XK_AudioPrev), spawn "banshee --prev") 
 
     -- Lower Volume
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -c 0 set Master 3dB-")
@@ -168,8 +168,8 @@ myLayout = avoidStruts $ (
 
 myManageHook = composeAll
     [ className =? "Pidgin"         --> doFloat
-    , appName =? "ncmpcpp"          --> placeHook (smart (0.95, 0.95)) <+> doFloat
     , className =? "Skype"          --> doFloat
+    , className =? "banshee"          --> doFloat
     ]
 
 myEventHook = ewmhDesktopsEventHook
@@ -179,18 +179,9 @@ myLogHook = ewmhDesktopsLogHook
 -- needed for matlab to work with XMonad
 myStartupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
 
-myPP = defaultPP { 
-    ppCurrent = xmobarColor "#2b7bc2" "" . wrap "«" "»",
-    ppVisible = wrap "«" "»",
-    ppTitle = xmobarColor "#2b7bc2" "",
-    ppSep = " | ",
-    ppOrder = \(ws:_:t:_) -> [ws,t]
-    }
-
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-myXMobar = statusBar "xmobar" myPP toggleStrutsKey
 
-main = xmonad =<< myXMobar defaults
+main = xmonad defaults
 
 defaults = defaultConfig {
         terminal           = myTerminal,
