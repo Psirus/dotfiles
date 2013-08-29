@@ -33,7 +33,7 @@ myModMask       = mod1Mask
 myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#2b7bcf"
+myFocusedBorderColor = "#78cd21"
 
 appendfile = do
     appendFilePrompt defaultXPConfig notesFile
