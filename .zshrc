@@ -19,6 +19,8 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "\e[A" history-beginning-search-backward-end
 bindkey "\e[B" history-beginning-search-forward-end
 
+export PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+
 # Aliases
 alias ls='ls --color=auto'
 alias GB='cd ~/Studium/GB'
