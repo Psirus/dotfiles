@@ -9,6 +9,7 @@ unsetopt beep
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
+autoload -U zcalc
 
 PROMPT="%{$fg_no_bold[cyan]%}%n|%1~» %{$reset_color%}"
 
@@ -19,14 +20,28 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "\e[A" history-beginning-search-backward-end
 bindkey "\e[B" history-beginning-search-forward-end
 
+export PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+
 # Aliases
 alias ls='ls --color=auto'
 alias GB='cd ~/Studium/GB'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
+alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
 
+# make directory and change into it
 function mcd() {
   mkdir -p "$1" && cd "$1";
+}
+
+# up 4 -> go 4 directories up (i.e cd ../../../..)
+function up() {
+    ups=""
+    for i in $(seq 1 $1)
+    do
+    ups=$ups"../"
+    done
+    cd $ups
 }
 
 bindkey '^[[7~' vi-beginning-of-line   # Home
