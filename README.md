@@ -12,23 +12,18 @@ Installation:
 -------------
 Should be relatively painless::
 
-    git clone git://github.com/psirus/dotfiles.git ~/.dotfiles
-    cp .dotfiles/post-commit .dotfiles/.git/hooks/
+    git clone https://github.com/Psirus/dotfiles.git ~/.dotfiles
+    cd .dotfiles && ./link.sh
 
-The post-commit hook will link all the hidden dotfiles in this directory from
-your home directory.
+The `init.sh` script will link the dotifles into your home directory, and
+try to setup vundle for vim.
 
 Features:
 ---------
 Almost *stock* xmonad experience, but with integration for Xfce. Also,
-I've defined keybindings for gmusicbrowser.
+I've defined keybindings for Banshee.
 
 Feedback:
 ---------
 Tell me what you think or whether you have any problems with my configs:
-`Issues <https://github.com/Psirus/dotfiles/issues>`_
-
-Thanks to:
-----------
-
-John Piasetzki for `the post-commit idea <https://github.com/jpiasetz/dotfiles>`_
+https://github.com/Psirus/dotfiles/issues
