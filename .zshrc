@@ -14,16 +14,20 @@ autoload -U zcalc
 PROMPT="%{$fg_no_bold[cyan]%}%n|%1~» %{$reset_color%}"
 
 # go up/down searching through the history with what you have typed so far
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "\e[A" history-beginning-search-backward-end
-bindkey "\e[B" history-beginning-search-forward-end
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
 
-export PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
 
 # Aliases
 alias ls='ls --color=auto'
+alias ll='ls -lh'
 alias GB='cd ~/Studium/GB'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
