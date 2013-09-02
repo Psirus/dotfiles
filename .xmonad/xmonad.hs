@@ -152,9 +152,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts $ (
+myLayout = (avoidStruts $ (
     tiled ||| 
-    Mirror tiled ) |||  
+    Mirror tiled )) |||  
     noBorders (fullscreenFull Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
