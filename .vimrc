@@ -48,6 +48,7 @@ set directory=~/.vim/tmp,.
 set guioptions+=lLrmtT
 set guioptions-=lLrmtT
 
+let g:syntastic_mode_map = { 'mode': 'passive' }
 set tags=./tags;~/home_server/workspace/3D_XFEM
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
