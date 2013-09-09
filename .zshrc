@@ -28,10 +28,13 @@ PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PAT
 # Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lh'
-alias GB='cd ~/Studium/GB'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
+
+# path aliases
+alias GB='cd ~/Studium/GB'
+alias kuray='cd ~/Code/Python/kuray'
 
 # make directory and change into it
 function mcd() {
