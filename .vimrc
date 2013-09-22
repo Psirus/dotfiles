@@ -12,6 +12,8 @@ Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 " Syntax checking
 Bundle 'scrooloose/syntastic'
+" Orgmode
+Bundle 'jceb/vim-orgmode'
 
 syntax on
 filetype plugin indent on 
