@@ -25,15 +25,15 @@ myFocusFollowsMouse = True
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses = False
 
-myBorderWidth   = 1
+myBorderWidth   = 2
 
 myModMask       = mod1Mask
 
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#78cd21"
+myNormalBorderColor  = "#888888"
+myFocusedBorderColor = "#2865a3"
 
 appendfile = do
     appendFilePrompt defaultXPConfig notesFile
@@ -152,7 +152,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (avoidStruts $ (
+myLayout = (smartSpacing 7 $ avoidStruts $ (
     tiled ||| 
     Mirror tiled )) |||  
     noBorders (fullscreenFull Full) 
