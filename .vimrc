@@ -14,6 +14,10 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'scrooloose/syntastic'
 " Orgmode
 Bundle 'jceb/vim-orgmode'
+" Airline
+Bundle 'bling/vim-airline'
+" Jedi
+Bundle 'davidhalter/jedi-vim'
 
 syntax on
 filetype plugin indent on 
@@ -50,6 +54,8 @@ set directory=~/.vim/tmp,.
 set guioptions+=lLrmtT
 set guioptions-=lLrmtT
 
+set laststatus=2
+let g:bufferline_echo = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
 set tags=./tags;~/home_server/workspace/3D_XFEM
 " remap tag following to ü (much better with German/Neo keyboard layout)
