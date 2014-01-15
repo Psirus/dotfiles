@@ -18,6 +18,8 @@ Bundle 'jceb/vim-orgmode'
 Bundle 'bling/vim-airline'
 " Jedi
 Bundle 'davidhalter/jedi-vim'
+" Ack-Vim
+Bundle 'mileszs/ack.vim'
 
 syntax on
 filetype plugin indent on 
