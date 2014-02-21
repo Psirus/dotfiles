@@ -16,8 +16,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'jceb/vim-orgmode'
 " Airline
 Bundle 'bling/vim-airline'
-" Jedi
-Bundle 'davidhalter/jedi-vim'
 " Ack-Vim
 Bundle 'mileszs/ack.vim'
 

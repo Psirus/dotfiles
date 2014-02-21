@@ -4,7 +4,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory autocd extendedglob HIST_IGNORE_DUPS
 
-setopt correctall
 unsetopt beep
 
 autoload -Uz compinit && compinit
@@ -23,7 +22,7 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
-PATH=~/Code/Bash:~/.cabal/bin:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
 
 # Aliases
 alias ls='ls --color=auto'
@@ -31,6 +30,7 @@ alias ll='ls -lh'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
+alias ack='ack-grep'
 
 # path aliases
 alias GB='cd ~/Studium/GB'
