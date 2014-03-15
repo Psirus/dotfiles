@@ -32,6 +32,8 @@ alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
 alias ack='ack-grep'
 alias KB='firefox -new-tab ~/Dokumente/KB/.build/index.html'
+alias pylint='/usr/bin/pylint'
+alias pylint3='/usr/local/bin/pylint'
 
 # path aliases
 alias GB='cd ~/Studium/GB'
