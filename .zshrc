@@ -22,7 +22,7 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
-PATH=~/Code/Bash:/usr/local/texlive/2013/bin/x86_64-linux:/bin:$PATH
+PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:/opt/intel/bin:$PATH
 
 # Aliases
 alias ls='ls --color=auto'
@@ -30,6 +30,7 @@ alias ll='ls -lh'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
+alias -s jpg='viewnior'
 alias ack='ack-grep'
 alias KB='firefox -new-tab ~/Dokumente/KB/.build/index.html'
 alias pylint='/usr/bin/pylint'

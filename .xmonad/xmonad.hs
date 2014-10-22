@@ -48,6 +48,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch xfrun4
     , ((modm,               xK_p     ), spawn "dmenu_run")
 
+    -- launch conky
+    , ((modm,               xK_f     ), spawn "conky")
+    , ((modm,               xK_g     ), spawn "banshee & sleep 5 && conky -c .conkyrc2")
     -- close focused window
     , ((modm,               xK_F4    ), kill)
 
@@ -115,7 +118,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,           xF86XK_AudioNext), spawn "banshee --next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), spawn "banshee --prev") 
+    , ((0,           xF86XK_AudioPrev), spawn "banshee --restart-or-previous") 
 
     -- Lower Volume
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -c 0 set Master 3dB-")
