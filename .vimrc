@@ -18,6 +18,8 @@ Bundle 'jceb/vim-orgmode'
 Bundle 'bling/vim-airline'
 " Ack-Vim
 Bundle 'mileszs/ack.vim'
+" Align
+Bundle 'junegunn/vim-easy-align'
 
 syntax on
 filetype plugin indent on 
@@ -61,3 +63,9 @@ set tags=./tags;~/home_server/workspace/3D_XFEM
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
