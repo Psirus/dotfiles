@@ -10,9 +10,12 @@ import XMonad.Layout.Fullscreen
 import XMonad.Prompt
 import XMonad.Prompt.AppendFile
 import XMonad.Util.Loggers
+import XMonad.Util.Dzen
+import XMonad.Util.Run
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
+import System.Posix.Unistd
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -29,24 +32,51 @@ myBorderWidth   = 2
 
 myModMask       = mod1Mask
 
---myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
 myNormalBorderColor  = "#888888"
 myFocusedBorderColor = "#2865a3"
+
+volumeCommand = "amixer get Master | " ++ 
+                "tail -1 | " ++
+                "sed 's/.*\\(-[0-9]\\+.[0-9]\\+dB\\).*/\\1/'"
+
+myLogHook h = dynamicLogWithPP $ defaultPP
+    {
+        ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
+      , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
+      , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
+      , ppHiddenNoWindows   =   const ""
+      , ppUrgent            =   dzenColor "#ff0000" "#1B1D1E" . pad
+      , ppWsSep             =   " "
+      , ppSep               =   "  |  "
+      , ppLayout            =   \ x -> ""
+      , ppExtras            =  [battery, date "%R", logCmd volumeCommand]
+      , ppTitle             =   (" " ++) . dzenColor "white" "#1B1D1E" . dzenEscape
+      , ppOutput            =   hPutStrLn h
+    }
 
 appendfile = do
     appendFilePrompt defaultXPConfig notesFile
     where
         notesFile = "/home/psirus/Dokumente/Diverses/notes.md"
 
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+amixer hostname = "amixer " ++ card ++ "set Master "
+    where
+        card = case hostname of
+            "psirus-laptop" -> "-c 1 "
+            "psirus-desktop" -> "-c 0 "
+
+raiseVolume hostname = spawn $ amixer hostname ++ "3dB+"
+lowerVolume hostname = spawn $ amixer hostname ++ "3dB-"
+
+myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch xfrun4
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "dmenu_run -h '24' -fn 'Droid Sans:size=10' -nb '#1B1D1E' -nf '#FFFFFF'")
 
     -- launch conky
     , ((modm,               xK_f     ), spawn "conky")
@@ -118,10 +148,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,           xF86XK_AudioPrev), spawn "banshee --restart-or-previous") 
 
     -- Lower Volume
-    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -c 0 set Master 3dB-")
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume hostname)
 
     -- Raise Volume
-    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -c 0 set Master 3dB+")
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume hostname)
 
     -- Prompt to append a sinle line of text to a file
     , ((modm .|. controlMask, xK_n   ), appendfile)
@@ -174,16 +204,18 @@ myManageHook = composeAll
 
 myEventHook = ewmhDesktopsEventHook
 
-myLogHook = ewmhDesktopsLogHook
+--myLogHook = ewmhDesktopsLogHook
 
 -- needed for matlab to work with XMonad
-myStartupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
+myStartupHook = ewmhDesktopsStartup <+> spawn "compton"
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+myXmonadBar = "dzen2 -x '0' -y '0' -o '170' -h '24' -w '1366' -fn 'Droid Sans:size=10' -ta 'c' -fg '#FFFFFF' -bg '#1B1D1E'"
 
-main = xmonad defaults
-
-defaults = defaultConfig {
+main = do
+    dzenBar <- spawnPipe myXmonadBar
+    hostname <- fmap nodeName getSystemID
+    xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
@@ -192,11 +224,11 @@ defaults = defaultConfig {
         workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
-        keys               = myKeys,
+        keys               = myKeys hostname,
         mouseBindings      = myMouseBindings,
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = myLogHook dzenBar,
         startupHook        = myStartupHook
         }

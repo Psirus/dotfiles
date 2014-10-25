@@ -1,6 +1,3 @@
-gtk-theme-name="Mint-X"
-gtk-icon-theme-name="Mint-X"
-gtk-font-name="Sans 10"
 style "vimfix" {
     bg[NORMAL] = "#1B1D1E"
 }
