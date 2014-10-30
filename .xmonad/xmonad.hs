@@ -20,7 +20,7 @@ import System.Posix.Unistd
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "xfce4-terminal"
+myTerminal      = "urxvt"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse = True
@@ -215,7 +215,7 @@ myEventHook = ewmhDesktopsEventHook
 --myLogHook = ewmhDesktopsLogHook
 
 -- needed for matlab to work with XMonad
-myStartupHook = ewmhDesktopsStartup
+myStartupHook = ewmhDesktopsStartup <+> spawn "compton"
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myXmonadBar = "dzen2 -x '0' -y '0' -o '170' -h '24' -w '185' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
