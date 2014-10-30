@@ -32,28 +32,36 @@ myBorderWidth   = 2
 
 myModMask       = mod1Mask
 
-myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+myWorkspaces            :: [String]
+myWorkspaces            = clickable . (map dzenEscape) $ ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+ 
+  where clickable l     = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
+                            (i,ws) <- zip [1..] l,
+                            let n = i ]
+
 
 myNormalBorderColor  = "#888888"
-myFocusedBorderColor = "#2865a3"
-
-volumeCommand = "amixer get Master | " ++ 
-                "tail -1 | " ++
-                "sed 's/.*\\(-[0-9]\\+.[0-9]\\+dB\\).*/\\1/'"
+myFocusedBorderColor = "#A91919"
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     {
-        ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
-      , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
-      , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
-      , ppHiddenNoWindows   =   const ""
-      , ppUrgent            =   dzenColor "#ff0000" "#1B1D1E" . pad
-      , ppWsSep             =   " "
-      , ppSep               =   "  |  "
-      , ppLayout            =   \ x -> ""
-      , ppExtras            =  [battery, date "%R", logCmd volumeCommand]
-      , ppTitle             =   (" " ++) . dzenColor "white" "#1B1D1E" . dzenEscape
-      , ppOutput            =   hPutStrLn h
+        ppCurrent         = dzenColor "#A91919" "#1B1D1E" . pad
+      , ppVisible         = dzenColor "white" "#1B1D1E" . pad
+      , ppHidden          = dzenColor "white" "#1B1D1E" . pad
+      , ppHiddenNoWindows = const ""
+      , ppUrgent          = dzenColor "#ff0000" "#1B1D1E" . pad
+      , ppWsSep           = " "
+      , ppSep             = "  |  "
+      , ppOrder           = \(ws:l:t) -> [ws]
+      , ppOutput          = hPutStrLn h
+    }
+
+myLogHook2 h = dynamicLogWithPP $ defaultPP
+    {
+        ppSep    = "  |  "
+      , ppOrder  = \(ws:l:t:e) -> [t]
+      , ppTitle  = (" " ++) . dzenColor "white" "#1B1D1E" . dzenEscape
+      , ppOutput = hPutStrLn h
     }
 
 appendfile = do
@@ -76,7 +84,7 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch xfrun4
-    , ((modm,               xK_p     ), spawn "dmenu_run -h '24' -fn 'Droid Sans:size=10' -nb '#1B1D1E' -nf '#FFFFFF'")
+    , ((modm,               xK_p     ), spawn "dmenu_run -h '24' -fn 'Droid Sans:size=10' -sb '#A91919' -nb '#1B1D1E' -nf '#FFFFFF'")
 
     -- launch conky
     , ((modm,               xK_f     ), spawn "conky")
@@ -207,13 +215,15 @@ myEventHook = ewmhDesktopsEventHook
 --myLogHook = ewmhDesktopsLogHook
 
 -- needed for matlab to work with XMonad
-myStartupHook = ewmhDesktopsStartup <+> spawn "compton"
+myStartupHook = ewmhDesktopsStartup
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-myXmonadBar = "dzen2 -x '0' -y '0' -o '170' -h '24' -w '1366' -fn 'Droid Sans:size=10' -ta 'c' -fg '#FFFFFF' -bg '#1B1D1E'"
+myXmonadBar = "dzen2 -x '0' -y '0' -o '170' -h '24' -w '185' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+myXmonadBar2 = "dzen2 -x '185' -y '0' -o '170' -h '24' -w '998' -fn 'Droid Sans:size=10' -ta 'c' -fg '#FFFFFF' -bg '#1B1D1E'"
 
 main = do
     dzenBar <- spawnPipe myXmonadBar
+    dzenBar2 <- spawnPipe myXmonadBar2
     hostname <- fmap nodeName getSystemID
     xmonad $ defaultConfig {
         terminal           = myTerminal,
@@ -229,6 +239,6 @@ main = do
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook dzenBar,
+        logHook            = myLogHook dzenBar <+> myLogHook2 dzenBar2,
         startupHook        = myStartupHook
         }
