@@ -6,6 +6,8 @@ setopt appendhistory autocd extendedglob HIST_IGNORE_DUPS
 
 unsetopt beep
 
+export PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:$PATH
+
 autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
@@ -62,6 +64,7 @@ alias ack='ack-grep'
 alias KB='firefox -new-tab ~/Dokumente/KB/.build/index.html'
 alias pylint='/usr/bin/pylint'
 alias pylint3='/usr/local/bin/pylint'
+alias make='make -j 4'
 
 # path aliases
 alias GB='cd ~/Studium/GB'
