@@ -154,7 +154,7 @@ myManageHook = composeAll
 myEventHook = ewmhDesktopsEventHook
 
 -- needed for Java Applications to work with XMonad
-myStartupHook = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D"
+myStartupHook = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setxkbmap de neo" <+> setWMName "LG3D"
 
 main = do
     xmonad $ defaultConfig {

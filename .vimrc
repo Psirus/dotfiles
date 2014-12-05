@@ -69,3 +69,6 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 nmap <Leader>a <Plug>(EasyAlign)
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
