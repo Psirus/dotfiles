@@ -52,11 +52,14 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
+if [[ $HOST = mlr043u ]]; then
+    PATH=~/Code/Bash:~/FiPPS:~/colordiff:~/python:~/texlive/bin/x86_64-linux:/bin:$PATH
+    export PYTHONPATH=~/python:$PYTHONPATH
+fi
 
 # Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lh'
-alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
 alias -s jpg='viewnior'
