@@ -96,5 +96,3 @@ bindkey '^[[2~' beep                   # Insert
 bindkey '^[[3~' delete-char            # Del
 bindkey '^[[5~' vi-backward-blank-word # Page Up
 bindkey '^[[6~' vi-forward-blank-word  # Page Down
-
-source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
