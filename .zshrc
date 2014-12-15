@@ -52,9 +52,12 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
-if [[ $HOST = mlr043u ]]; then
+if [[ $HOST =~ mlr ]]; then
     PATH=~/Code/Bash:~/FiPPS:~/colordiff:~/python:~/texlive/bin/x86_64-linux:/bin:$PATH
     export PYTHONPATH=~/python:$PYTHONPATH
+    . /mnt/appl/x86_64/Modules/rc_files/profile.modules
+    module load /mnt/appl/x86_64/Modules/modulefiles/modules
+    module load /mnt/appl/x86_64/Modules/modulefiles/lft
 fi
 
 # Aliases
