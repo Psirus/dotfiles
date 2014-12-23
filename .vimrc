@@ -24,17 +24,14 @@ Bundle 'junegunn/vim-easy-align'
 syntax on
 filetype plugin indent on 
 
-if $COLORTERM == 'xfce4-terminal'
-    set t_Co=256
-endif
-
 colorscheme molokai
 set enc=utf-8
 " show overly long lines
 set cc=80
 let g:tex_flavor='latex'
 
-set guifont=Droid\ Sans\ Mono\ 10
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
+let g:airline_powerline_fonts = 1
 " leave 10 lines at top/bottom while scrolling
 set scrolloff=10
 set shellcmdflag=-ic
@@ -47,8 +44,6 @@ set expandtab
 
 au BufNewFile,BufRead *.md set filetype=markdown
 
-set modeline
-set modelines=1
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.vim/tmp,.
 set directory=~/.vim/tmp,.
@@ -59,14 +54,13 @@ set guioptions-=lLrmtT
 set laststatus=2
 let g:bufferline_echo = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
-set tags=./tags;~/home_server/workspace/3D_XFEM
+set tags=./tags
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 nmap <Leader>a <Plug>(EasyAlign)
 
