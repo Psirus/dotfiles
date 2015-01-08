@@ -2,7 +2,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt appendhistory autocd extendedglob HIST_IGNORE_DUPS
+setopt appendhistory autocd HIST_IGNORE_DUPS
+setopt nonomatch
 
 unsetopt beep
 
@@ -53,6 +54,9 @@ bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
 if [[ $HOST =~ mlr ]]; then
+    alias mpiexec=/mnt/appl/x86_64/petsc/3.3-p7/bin/petscmpiexec
+    export PETSC_DIR=/mnt/appl/x86_64/petsc/3.3-p7
+    export PETSC_ARCH=
     PATH=~/Code/Bash:~/FiPPS:~/colordiff:~/python:~/texlive/bin/x86_64-linux:/bin:$PATH
     export PYTHONPATH=~/python:$PYTHONPATH
     . /mnt/appl/x86_64/Modules/rc_files/profile.modules
