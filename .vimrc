@@ -20,6 +20,12 @@ Bundle 'bling/vim-airline'
 Bundle 'mileszs/ack.vim'
 " Align
 Bundle 'junegunn/vim-easy-align'
+" Tagbar
+Bundle 'majutsushi/tagbar'
+" Command T
+Bundle 'wincent/command-t'
+
+nmap <F8> :TagbarToggle<CR>
 
 syntax on
 filetype plugin indent on 
@@ -32,6 +38,7 @@ let g:tex_flavor='latex'
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 " leave 10 lines at top/bottom while scrolling
 set scrolloff=10
 set shellcmdflag=-ic

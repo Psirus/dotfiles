@@ -8,6 +8,8 @@ setopt nonomatch
 unsetopt beep
 
 export PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:$PATH
+export PETSC_DIR=~/Code/petsc-3.5.2
+export PETSC_ARCH=arch-linux2-c-debug
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -103,3 +105,11 @@ bindkey '^[[2~' beep                   # Insert
 bindkey '^[[3~' delete-char            # Del
 bindkey '^[[5~' vi-backward-blank-word # Page Up
 bindkey '^[[6~' vi-forward-blank-word  # Page Down
+
+function countdown(){
+   date1=$((`date +%s` + $1)); 
+   while [ "$date1" -ne `date +%s` ]; do 
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 1
+   done
+}
