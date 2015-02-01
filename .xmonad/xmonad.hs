@@ -12,7 +12,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 myTerminal :: String
-myTerminal = "urxvt"
+myTerminal = "xfce4-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
