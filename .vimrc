@@ -61,7 +61,7 @@ set guioptions-=lLrmtT
 set laststatus=2
 let g:bufferline_echo = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
-set tags=./tags
+set tags=./tags,tags;$HOME
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
