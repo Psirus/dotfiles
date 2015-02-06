@@ -7,7 +7,7 @@ setopt nonomatch
 
 unsetopt beep
 
-export PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:$PATH
+export PATH=~/Code/Bash:~/Code/Fortran/fipps:~/Code/Fortran/fipps/meshconverter:/bin:$PATH
 export PETSC_DIR=~/Code/petsc-3.5.2
 export PETSC_ARCH=arch-linux2-c-debug
 
