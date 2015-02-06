@@ -4,7 +4,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.Place
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Spacing
+import XMonad.Layout.Grid
+import XMonad.Layout.EqualSpacing
 import XMonad.Layout.Fullscreen
 import Graphics.X11.ExtraTypes.XF86
 
@@ -104,6 +105,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Raise Volume
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume)
 
+    , ((modm, xK_n), sendMessage $ LessSpacing)
+    , ((modm .|. shiftMask, xK_n), sendMessage $ MoreSpacing)
+    , ((modm .|. controlMask, xK_n), sendMessage $ DefaultSpacing)
+    , ((modm .|. controlMask .|. shiftMask, xK_n), sendMessage $ NoSpacing)
+
     ]
     ++
 
@@ -131,9 +137,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (smartSpacing 7 $ avoidStruts $ (
-    tiled ||| 
-    Mirror tiled )) |||  
+myLayout = (equalSpacing 36 6 0 1 $ avoidStruts $ (
+    GridRatio 1.1 ||| 
+    tiled )) |||  
     noBorders (fullscreenFull Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
