@@ -24,6 +24,8 @@ Bundle 'junegunn/vim-easy-align'
 Bundle 'majutsushi/tagbar'
 " Command T
 Bundle 'wincent/command-t'
+" LaTeX Syntax
+Bundle 'gi1242/vim-tex-syntax'
 
 nmap <F8> :TagbarToggle<CR>
 
