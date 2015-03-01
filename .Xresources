@@ -25,6 +25,7 @@
 
 ! Scrollwheel support
 URxvt.perl-ext-common:  vtwheel
+URxvt.internalBorder: 26
 
 ! Transparency
 URxvt.depth: 32

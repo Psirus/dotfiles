@@ -4,6 +4,8 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory autocd HIST_IGNORE_DUPS
 setopt nonomatch
+setopt extended_glob
+setopt no_bare_glob_qual
 
 unsetopt beep
 

@@ -26,6 +26,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'wincent/command-t'
 " LaTeX Syntax
 Bundle 'gi1242/vim-tex-syntax'
+" Undo Tree
+Bundle 'mbbill/undotree'
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -52,6 +54,9 @@ set shiftwidth=4
 set expandtab
 
 au BufNewFile,BufRead *.md set filetype=markdown
+" save & load folds
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.vim/tmp,.
@@ -63,6 +68,7 @@ set guioptions-=lLrmtT
 set laststatus=2
 let g:bufferline_echo = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:CommandTFileScanne = 'find'
 set tags=./tags,tags;$HOME
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
@@ -75,3 +81,7 @@ nmap <Leader>a <Plug>(EasyAlign)
 
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+map <silent> <F6> :!~/Studium/DA/build.py<CR>
+let fortran_fold = 1
+let fortran_fold_conditionals = 1

@@ -6,6 +6,7 @@ import XMonad.Hooks.Place
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.EqualSpacing
+import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Fullscreen
 import Graphics.X11.ExtraTypes.XF86
 
@@ -13,7 +14,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 myTerminal :: String
-myTerminal = "xfce4-terminal"
+myTerminal = "urxvt"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -33,6 +34,9 @@ myFocusedBorderColor = "#A91919"
 
 raiseVolume = spawn "amixer set Master 3dB+"
 lowerVolume = spawn "amixer set Master 3dB-"
+
+altMask = mod4Mask
+ctrlMask = controlMask
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
@@ -110,6 +114,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_n), sendMessage $ DefaultSpacing)
     , ((modm .|. controlMask .|. shiftMask, xK_n), sendMessage $ NoSpacing)
 
+    , ((modm .|. altMask,               xK_l     ), sendMessage $ ExpandTowards R)
+    , ((modm .|. altMask,               xK_h     ), sendMessage $ ExpandTowards L)
+    , ((modm .|. altMask,               xK_j     ), sendMessage $ ExpandTowards D)
+    , ((modm .|. altMask,               xK_k     ), sendMessage $ ExpandTowards U)
+    , ((modm .|. altMask .|. ctrlMask , xK_l     ), sendMessage $ ShrinkFrom R)
+    , ((modm .|. altMask .|. ctrlMask , xK_h     ), sendMessage $ ShrinkFrom L)
+    , ((modm .|. altMask .|. ctrlMask , xK_j     ), sendMessage $ ShrinkFrom D)
+    , ((modm .|. altMask .|. ctrlMask , xK_k     ), sendMessage $ ShrinkFrom U)
+    , ((modm, xK_ssharp ), sendMessage $ MoveSplit R)
+
+    , ((modm,                           xK_r     ), sendMessage Rotate)
+    , ((modm,                           xK_s     ), sendMessage Swap)
+    
     ]
     ++
 
@@ -123,7 +140,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -138,6 +155,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     ]
 
 myLayout = (equalSpacing 36 6 0 1 $ avoidStruts $ (
+    emptyBSP |||
     GridRatio 1.1 ||| 
     tiled )) |||  
     noBorders (fullscreenFull Full) 
