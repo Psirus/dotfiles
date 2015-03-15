@@ -54,9 +54,6 @@ set shiftwidth=4
 set expandtab
 
 au BufNewFile,BufRead *.md set filetype=markdown
-" save & load folds
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
 
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.vim/tmp,.
@@ -83,5 +80,6 @@ nmap <Leader>a <Plug>(EasyAlign)
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 map <silent> <F6> :!~/Studium/DA/build.py<CR>
+map <silent> <F7> :!dict -d fd-deu-eng <cword><CR>
 let fortran_fold = 1
 let fortran_fold_conditionals = 1

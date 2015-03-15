@@ -35,7 +35,6 @@ myFocusedBorderColor = "#A91919"
 raiseVolume = spawn "amixer set Master 3dB+"
 lowerVolume = spawn "amixer set Master 3dB-"
 
-altMask = mod4Mask
 ctrlMask = controlMask
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -74,10 +73,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_r     ), windows W.swapDown  )
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_g     ), windows W.swapUp    )
 
     -- Shrink the master area
     , ((modm,               xK_h     ), sendMessage Shrink)
@@ -114,15 +113,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_n), sendMessage $ DefaultSpacing)
     , ((modm .|. controlMask .|. shiftMask, xK_n), sendMessage $ NoSpacing)
 
-    , ((modm .|. altMask,               xK_l     ), sendMessage $ ExpandTowards R)
-    , ((modm .|. altMask,               xK_h     ), sendMessage $ ExpandTowards L)
-    , ((modm .|. altMask,               xK_j     ), sendMessage $ ExpandTowards D)
-    , ((modm .|. altMask,               xK_k     ), sendMessage $ ExpandTowards U)
-    , ((modm .|. altMask .|. ctrlMask , xK_l     ), sendMessage $ ShrinkFrom R)
-    , ((modm .|. altMask .|. ctrlMask , xK_h     ), sendMessage $ ShrinkFrom L)
-    , ((modm .|. altMask .|. ctrlMask , xK_j     ), sendMessage $ ShrinkFrom D)
-    , ((modm .|. altMask .|. ctrlMask , xK_k     ), sendMessage $ ShrinkFrom U)
-    , ((modm, xK_ssharp ), sendMessage $ MoveSplit R)
+    , ((modm .|. shiftMask,               xK_l     ), sendMessage $ ExpandTowards R)
+    , ((modm .|. shiftMask,               xK_h     ), sendMessage $ ExpandTowards L)
+    , ((modm .|. shiftMask,               xK_j     ), sendMessage $ ExpandTowards D)
+    , ((modm .|. shiftMask,               xK_k     ), sendMessage $ ExpandTowards U)
 
     , ((modm,                           xK_r     ), sendMessage Rotate)
     , ((modm,                           xK_s     ), sendMessage Swap)

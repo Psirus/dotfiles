@@ -4,6 +4,9 @@ source! /home/psirus/.vimperatorrc.local
 
 " vim: set ft=vimperator:"javascript to hide statusbar
 
+colorscheme molokai
+set gui=nonavigation
+
 noremap <silent> <F8> :js toggle_bottombar()<CR>
 noremap : :js toggle_bottombar('on')<CR>:
 noremap o :js toggle_bottombar('on')<CR>o
