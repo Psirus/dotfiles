@@ -29,7 +29,7 @@ URxvt.internalBorder: 26
 
 ! Transparency
 URxvt.depth: 32
-URxvt*background: [95]#1B1D1E
+URxvt*background: [90]#1B1D1E
 
 URxvt*foreground: #FFFFFF
 

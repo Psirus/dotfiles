@@ -13,6 +13,7 @@ fi
 
 pcmanfm -d &
 urxvtd &
+redshift -l 51.1:13.7 &
 
 xsetroot -cursor_name left_ptr
 feh --bg-scale ~/Bilder/Backgrounds/cat-and-tire.jpg

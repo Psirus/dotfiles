@@ -123,13 +123,13 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_x     ), spawn "sleep 0.2 && xset dpms force off")
 
     -- Toggle Play/Pause
-    , ((0,           xF86XK_AudioPlay), spawn "banshee --toggle-playing")
+    , ((0,           xF86XK_AudioPlay), spawn "cmus-remote --pause")
 
     -- Next track
-    , ((0,           xF86XK_AudioNext), spawn "banshee --next")
+    , ((0,           xF86XK_AudioNext), spawn "cmus-remote --next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), spawn "banshee --restart-or-previous") 
+    , ((0,           xF86XK_AudioPrev), spawn "cmus-remote --prev")
 
     -- Lower Volume
     , ((0, xF86XK_AudioLowerVolume), lowerVolume hostname)
@@ -201,6 +201,7 @@ myManageHook = composeAll
     [ className =? "Pidgin"         --> doFloat
     , className =? "Skype"          --> doFloat
     , className =? "banshee"          --> doFloat
+    , className =? "feh"          --> doIgnore
     ]
 
 myEventHook = ewmhDesktopsEventHook
