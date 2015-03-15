@@ -200,14 +200,23 @@ myManageHook = composeAll
 
 myEventHook = ewmhDesktopsEventHook
 
+
+leftBar :: String -> String
+leftBar hostname = ""
+--    | hostname == "psirus-desktop" = "conky | dzen2 -x '1000' -y '0' -o '180' -h '24' -w '680' -fn 'Droid Sans:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E'"
+--    | otherwise = ""
+
 -- needed for Java Applications to work with XMonad
-myStartupHook = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setxkbmap de neo" <+> setWMName "LG3D"
+myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setxkbmap de neo" <+> setWMName "LG3D" <+> spawn (leftBar hostname)
+
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-myXmonadBar = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+myXmonadBar hostname
+    | hostname == "psirus-laptop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+    | otherwise = ""
 
 main = do
-    dzenBar <- spawnPipe myXmonadBar
     hostname <- fmap nodeName getSystemID
+    dzenBar <- spawnPipe (myXmonadBar hostname)
     xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -223,5 +232,5 @@ main = do
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook dzenBar,
-        startupHook        = myStartupHook
+        startupHook        = myStartupHook hostname
         }

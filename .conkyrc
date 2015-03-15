@@ -7,8 +7,9 @@ use_spacer none
 times_in_seconds true
 
 TEXT
-^fg(\#A6E22E) ^i(/home/psirus/volume.xbm) ^fg()${exec volume.sh}\
+^fg(\#A6E22E) ^i(/home/psirus/.dotfiles/icons/volume.xbm) ^fg()${exec volume.sh}\
 ^fg(\#AE81FF)\
+${if_match "$nodename" == "psirus-laptop"}\
 ${if_match ${battery_percent BAT1} <= 100}${if_match ${battery_percent BAT1} > 85} ^i(/home/psirus/.dotfiles/icons/battery90.xbm) ${endif}${endif}\
 ${if_match ${battery_percent BAT1} <= 85}${if_match ${battery_percent BAT1} > 75} ^i(/home/psirus/.dotfiles/icons/battery80.xbm) ${endif}${endif}\
 ${if_match ${battery_percent BAT1} <= 75}${if_match ${battery_percent BAT1} > 65} ^i(/home/psirus/.dotfiles/icons/battery70.xbm) ${endif}${endif}\
@@ -19,4 +20,5 @@ ${if_match ${battery_percent BAT1} <= 35}${if_match ${battery_percent BAT1} > 25
 ${if_match ${battery_percent BAT1} <= 25}${if_match ${battery_percent BAT1} > 15} ^i(/home/psirus/.dotfiles/icons/battery20.xbm) ${endif}${endif}\
 ${if_match ${battery_percent BAT1} <= 15}^i(/home/psirus/.dotfiles/icons/battery10.xbm)${endif}^fg()\
 ${if_match "${battery_short BAT1}" == "U"}Full ${else}${format_time ${battery_time BAT1} "\hh\mm"} ${endif}\
+${endif}\
 ^fg(\#FD971F) ^i(/home/psirus/.dotfiles/icons/clock.xbm) ^fg() ${time %H:%M} 
