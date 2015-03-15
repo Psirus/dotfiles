@@ -3,12 +3,17 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.Place
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.EqualSpacing
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Fullscreen
+import XMonad.Util.Loggers
+import XMonad.Util.Dzen
+import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
+import System.Posix.Unistd
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -25,19 +30,42 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 myWorkspaces :: [String]
-myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+myWorkspaces            = clickable . (map dzenEscape) $ ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+ 
+  where clickable l     = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
+                            (i,ws) <- zip [1..] l,
+                            let n = i ]
 
 myNormalBorderColor :: String
 myNormalBorderColor = "#888888"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#A91919"
 
-raiseVolume = spawn "amixer set Master 3dB+"
-lowerVolume = spawn "amixer set Master 3dB-"
+myLogHook h = dynamicLogWithPP $ defaultPP
+    {
+        ppCurrent         = dzenColor "#A91919" "#1B1D1E" . pad
+      , ppVisible         = dzenColor "white" "#1B1D1E" . pad
+      , ppHidden          = dzenColor "white" "#1B1D1E" . pad
+      , ppHiddenNoWindows = const ""
+      , ppUrgent          = dzenColor "#ff0000" "#1B1D1E" . pad
+      , ppWsSep           = " "
+      , ppSep             = "  |  "
+      , ppOrder           = \(ws:l:t:e) -> [ws,t]
+      , ppOutput          = hPutStrLn h
+    }
+
+amixer hostname = "amixer " ++ card ++ "set Master "
+    where
+        card = case hostname of
+            "psirus-laptop" -> "-c 1 "
+            "psirus-desktop" -> "-c 0 "
+
+raiseVolume hostname = spawn $ amixer hostname ++ "3dB+"
+lowerVolume hostname = spawn $ amixer hostname ++ "3dB-"
 
 ctrlMask = controlMask
 
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
@@ -103,10 +131,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,           xF86XK_AudioPrev), spawn "banshee --restart-or-previous") 
 
     -- Lower Volume
-    , ((0, xF86XK_AudioLowerVolume), lowerVolume)
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume hostname)
 
     -- Raise Volume
-    , ((0, xF86XK_AudioRaiseVolume), raiseVolume)
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume hostname)
 
     , ((modm, xK_n), sendMessage $ LessSpacing)
     , ((modm .|. shiftMask, xK_n), sendMessage $ MoreSpacing)
@@ -173,8 +201,12 @@ myEventHook = ewmhDesktopsEventHook
 
 -- needed for Java Applications to work with XMonad
 myStartupHook = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setxkbmap de neo" <+> setWMName "LG3D"
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+myXmonadBar = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
 
 main = do
+    dzenBar <- spawnPipe myXmonadBar
+    hostname <- fmap nodeName getSystemID
     xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -184,10 +216,11 @@ main = do
         workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
-        keys               = myKeys,
+        keys               = myKeys hostname,
         mouseBindings      = myMouseBindings,
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
+        logHook            = myLogHook dzenBar,
         startupHook        = myStartupHook
         }
