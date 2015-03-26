@@ -61,7 +61,7 @@ if [[ $HOST =~ mlr ]]; then
     alias mpiexec=/mnt/appl/x86_64/petsc/3.3-p7/bin/petscmpiexec
     export PETSC_DIR=/mnt/appl/x86_64/petsc/3.3-p7
     export PETSC_ARCH=
-    PATH=~/Code/Bash:~/FiPPS:~/colordiff:~/python:~/texlive/bin/x86_64-linux:/bin:$PATH
+    PATH=~/Code/Bash:~/FiPPS:~/FiPPS/meshconverter:~/colordiff:~/python:~/texlive/bin/x86_64-linux:/bin:$PATH
     export PYTHONPATH=~/python:$PYTHONPATH
     . /mnt/appl/x86_64/Modules/rc_files/profile.modules
     module load /mnt/appl/x86_64/Modules/modulefiles/modules
