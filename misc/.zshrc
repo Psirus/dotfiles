@@ -9,9 +9,10 @@ setopt no_bare_glob_qual
 
 unsetopt beep
 
-export PATH=~/Code/Bash:~/Code/Fortran/fipps:~/Code/Fortran/fipps/meshconverter:/bin:$PATH
+export PATH=~/Code/Bash:~/Code/Fortran/fipps:~/Code/Fortran/fipps/meshconverter:/bin:/usr/local/texlive/2014/bin/x86_64-linux/:$PATH
 export PETSC_DIR=~/Code/petsc-3.5.2
 export PETSC_ARCH=arch-linux2-c-debug
+export OSFONTDIR=/usr/share/fonts:$HOME/.fonts
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -81,6 +82,10 @@ alias KB='firefox -new-tab ~/Dokumente/KB/.build/index.html'
 alias pylint='/usr/bin/pylint'
 alias pylint3='/usr/local/bin/pylint'
 alias make='make -j 4'
+alias tlmgr='sudo env PATH=$PATH tlmgr'
+function gitsearch() {
+    git grep "$*" $(git rev-list --all)
+}
 
 # path aliases
 alias GB='cd ~/Studium/GB'

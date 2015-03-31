@@ -3,3 +3,5 @@
 	name = Christoph Pohl
 [push]
 	default = simple
+[color]
+	ui = auto
