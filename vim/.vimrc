@@ -66,7 +66,7 @@ set laststatus=2
 let g:bufferline_echo = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:CommandTFileScanne = 'find'
-set tags=./tags,tags;$HOME
+set tags=./tags;
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
