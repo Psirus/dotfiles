@@ -19,6 +19,6 @@ ${if_match ${battery_percent BAT1} <= 45}${if_match ${battery_percent BAT1} > 35
 ${if_match ${battery_percent BAT1} <= 35}${if_match ${battery_percent BAT1} > 25} ^i(/home/psirus/.dotfiles/icons/battery30.xbm) ${endif}${endif}\
 ${if_match ${battery_percent BAT1} <= 25}${if_match ${battery_percent BAT1} > 15} ^i(/home/psirus/.dotfiles/icons/battery20.xbm) ${endif}${endif}\
 ${if_match ${battery_percent BAT1} <= 15}^i(/home/psirus/.dotfiles/icons/battery10.xbm)${endif}^fg()\
-${if_match "${battery_short BAT1}" == "U"}Full ${else} ${if_match "${battery_short BAT1}" == "F"}Full ${else} ${format_time ${battery_time BAT1} "\hh\mm"} ${endif}${endif}\
+${if_match "${battery_short BAT1}" == "U"}Full ${else} ${if_match "${battery_short BAT1}" == "F"}Full ${else}${format_time ${battery_time BAT1} "\hh\mm"} ${endif}${endif}\
 ${endif}\
 ^fg(\#FD971F) ^i(/home/psirus/.dotfiles/icons/clock.xbm) ^fg() ${time %H:%M} 
