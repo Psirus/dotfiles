@@ -7,7 +7,7 @@ use_spacer none
 times_in_seconds true
 
 TEXT
-^fg(\#00adef)਀ ${execi 6 python2 ~/.dotfiles/message_indicator.py}\
+${execi 6 python2 ~/.dotfiles/message_indicator.py}\
 ^fg(\#A6E22E) ਁ ^fg()${exec volume.sh}\
 ^fg(\#AE81FF)\
 ${if_match "$nodename" == "psirus-laptop"}\

@@ -32,7 +32,7 @@ elif [ "$HOSTNAME" = "psirus-desktop" ]; then
     dzen_width="380"
 fi
 
-conky | dzen2 -x $dzen_start -y '0' -o '180' -h '24' -w $dzen_width -fn 'Droid Sans:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E' &
+conky | dzen2 -x $dzen_start -y '0' -o '180' -h '24' -w $dzen_width -fn 'Barfont:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E' &
 export PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:/opt/intel/bin:$PATH
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
