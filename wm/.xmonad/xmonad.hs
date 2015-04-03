@@ -211,8 +211,8 @@ myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setx
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myXmonadBar hostname
-    | hostname == "psirus-laptop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
-    | hostname == "psirus-desktop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1300' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+    | hostname == "psirus-laptop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '700' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+    | hostname == "psirus-desktop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
     | otherwise = ""
 
 main = do

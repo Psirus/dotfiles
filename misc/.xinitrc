@@ -23,13 +23,13 @@ if [ "$HOSTNAME" = "psirus-laptop" ]; then
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
-    dzen_start="1000"
-    dzen_width="368"
+    dzen_start="700"
+    dzen_width="668"
 elif [ "$HOSTNAME" = "psirus-desktop" ]; then
     xrandr --output VGA-0 --right-of DVI-0
     feh --bg-max --no-xinerama ~/Bilder/Backgrounds/Dualscreen/pikespeak.jpg &
-    dzen_start="1300"
-    dzen_width="380"
+    dzen_start="1000"
+    dzen_width="680"
 fi
 
 conky | dzen2 -x $dzen_start -y '0' -o '180' -h '24' -w $dzen_width -fn 'Barfont:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E' &
