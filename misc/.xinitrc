@@ -33,7 +33,8 @@ elif [ "$HOSTNAME" = "psirus-desktop" ]; then
 fi
 
 conky | dzen2 -x $dzen_start -y '0' -o '180' -h '24' -w $dzen_width -fn 'Barfont:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E' &
-export PATH=~/Code/Bash:~/Code/Fortran/fipps:/bin:/opt/intel/bin:$PATH
+export PATH=~/Code/Bash:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
+export OSFONTDIR=/usr/share/fonts:$HOME/.fonts
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 exec xmonad
