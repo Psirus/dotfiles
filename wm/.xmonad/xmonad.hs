@@ -122,13 +122,13 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_x     ), spawn "sleep 0.2 && xset dpms force off")
 
     -- Toggle Play/Pause
-    , ((0,           xF86XK_AudioPlay), spawn "cmus-remote --pause")
+    , ((0,           xF86XK_AudioPlay), spawn "mpc toggle")
 
     -- Next track
-    , ((0,           xF86XK_AudioNext), spawn "cmus-remote --next")
+    , ((0,           xF86XK_AudioNext), spawn "mpc next")
 
     -- Previous track
-    , ((0,           xF86XK_AudioPrev), spawn "cmus-remote --prev")
+    , ((0,           xF86XK_AudioPrev), spawn "mpc prev")
 
     -- Lower Volume
     , ((0, xF86XK_AudioLowerVolume), lowerVolume hostname)
