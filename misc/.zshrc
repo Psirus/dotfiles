@@ -59,7 +59,6 @@ alias ll='ls -lh'
 alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
 alias -s jpg='viewnior'
-alias make='make -j 4'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 function gitsearch() {
     git grep "$*" $(git rev-list --all)

@@ -9,7 +9,7 @@ times_in_seconds true
 TEXT
 ^fg(\#FF0000) ਃ ^fg()${execi 6 mpc current} \
 ${execi 6 python2 ~/.dotfiles/message_indicator.py}\
-^fg(\#A6E22E) ਁ ^fg()${exec volume.sh}\
+^fg(\#A6E22E) ਁ ^fg()${exec ~/Code/Bash/volume.sh}\
 ^fg(\#AE81FF)\
 ${if_match "$nodename" == "psirus-laptop"}\
 ${if_match ${battery_percent BAT1} <= 100}${if_match ${battery_percent BAT1} > 85} ^i(/home/psirus/.dotfiles/icons/battery90.xbm) ${endif}${endif}\
@@ -23,4 +23,4 @@ ${if_match ${battery_percent BAT1} <= 25}${if_match ${battery_percent BAT1} > 15
 ${if_match ${battery_percent BAT1} <= 15}^i(/home/psirus/.dotfiles/icons/battery10.xbm)${endif}^fg()\
 ${if_match "${battery_short BAT1}" == "U"}Full ${else} ${if_match "${battery_short BAT1}" == "F"}Full ${else}${format_time ${battery_time BAT1} "\hh\mm"} ${endif}${endif}\
 ${endif}\
-^fg(\#FD971F) ਂ ^fg() ${time %H:%M} 
+^fg(\#FD971F) ਂ ^fg() ${time %a.%d - %H:%M} 

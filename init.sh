@@ -7,6 +7,7 @@ if [[ ! -f /usr/lib/urxvt/perl/vtwheel ]]; then
 fi
 stow wm
 stow vim
+mkdir -p ~/.vim/tmp
 stow git
 stow misc
 stow mpd

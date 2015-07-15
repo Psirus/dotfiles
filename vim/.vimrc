@@ -22,14 +22,21 @@ Bundle 'mileszs/ack.vim'
 Bundle 'junegunn/vim-easy-align'
 " Tagbar
 Bundle 'majutsushi/tagbar'
-" Command T
-Bundle 'wincent/command-t'
+" Command T (commented out, because it creates segv; will look into it)
+" Bundle 'wincent/command-t'
 " LaTeX Syntax
 Bundle 'gi1242/vim-tex-syntax'
 " Undo Tree
 Bundle 'mbbill/undotree'
+" Text Linking needed for org-mode
+Bundle 'vim-scripts/utl.vim'
+Bundle 'tpope/vim-speeddating'
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'Valloric/YouCompleteMe'
 
 nmap <F8> :TagbarToggle<CR>
+
 
 syntax on
 filetype plugin indent on 
@@ -53,7 +60,9 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-au BufNewFile,BufRead *.md set filetype=markdown
+" au BufNewFile,BufRead *.md set filetype=markdown
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_math=1
 
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.vim/tmp,.
@@ -81,5 +90,8 @@ nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 map <silent> <F6> :!~/Studium/DA/build.py<CR>
 map <silent> <F7> :!dict -d fd-deu-eng <cword><CR>
+map <silent> <F8> :!/home/psirus/Dokumente/Acoustics/Wiki/wiki.py<CR>
 let fortran_fold = 1
 let fortran_fold_conditionals = 1
+let g:netrw_browsex_viewer= "xdg-open"
+

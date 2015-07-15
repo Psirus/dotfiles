@@ -207,7 +207,7 @@ leftBar hostname = ""
 --    | otherwise = ""
 
 -- needed for Java Applications to work with XMonad
-myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> spawn "setxkbmap de neo" <+> setWMName "LG3D" <+> spawn (leftBar hostname)
+myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D" <+> spawn (leftBar hostname)
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myXmonadBar hostname
