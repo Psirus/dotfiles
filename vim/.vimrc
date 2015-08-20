@@ -60,7 +60,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-" au BufNewFile,BufRead *.md set filetype=markdown
+" gitit pages are markdown as well
+au BufNewFile,BufRead *.page set filetype=mkd
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_math=1
 
