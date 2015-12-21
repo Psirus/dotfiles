@@ -12,26 +12,18 @@ Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 " Syntax checking
 Bundle 'scrooloose/syntastic'
-" Orgmode
-Bundle 'jceb/vim-orgmode'
 " Airline
 Bundle 'bling/vim-airline'
 " Ack-Vim
 Bundle 'mileszs/ack.vim'
 " Align
 Bundle 'junegunn/vim-easy-align'
-" Tagbar
-Bundle 'majutsushi/tagbar'
+" Or Tabular?!
+Bundle 'godlygeek/tabular'
 " Command T (commented out, because it creates segv; will look into it)
 " Bundle 'wincent/command-t'
 " LaTeX Syntax
 Bundle 'gi1242/vim-tex-syntax'
-" Undo Tree
-Bundle 'mbbill/undotree'
-" Text Linking needed for org-mode
-Bundle 'vim-scripts/utl.vim'
-Bundle 'tpope/vim-speeddating'
-Bundle 'godlygeek/tabular'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'Valloric/YouCompleteMe'
 
@@ -61,8 +53,7 @@ set shiftwidth=4
 set expandtab
 
 " gitit pages are markdown as well
-au BufNewFile,BufRead *.page set filetype=mkd
-let g:vim_markdown_folding_disabled=1
+au BufNewFile,BufRead *.page set filetype=markdown
 let g:vim_markdown_math=1
 
 " write ~ and .swp wiles to tmp directory
@@ -91,7 +82,6 @@ nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 map <silent> <F6> :!~/Studium/DA/build.py<CR>
 map <silent> <F7> :!dict -d fd-deu-eng <cword><CR>
-map <silent> <F8> :!/home/psirus/Dokumente/Acoustics/Wiki/wiki.py<CR>
 let fortran_fold = 1
 let fortran_fold_conditionals = 1
 let g:netrw_browsex_viewer= "xdg-open"

@@ -6,11 +6,9 @@ import XMonad.Hooks.Place
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
-import XMonad.Layout.EqualSpacing
-import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Fullscreen
+import XMonad.Layout.MouseResizableTile
 import XMonad.Util.Loggers
-import XMonad.Util.Dzen
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
 import System.Posix.Unistd
@@ -30,27 +28,32 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 myWorkspaces :: [String]
-myWorkspaces            = clickable . (map dzenEscape) $ ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
- 
-  where clickable l     = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
-                            (i,ws) <- zip [1..] l,
-                            let n = i ]
+myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
 myNormalBorderColor :: String
 myNormalBorderColor = "#888888"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#A91919"
 
+
+lemonbarColor :: String  -- ^ foreground color: a color name, or #rrggbb format
+              -> String  -- ^ background color
+              -> String  -- ^ output string
+              -> String
+lemonbarColor fg bg = wrap t ""
+    where t = concat ["%{F", fg, if null bg then "" else "}%{B" ++ bg, "}"]
+
 myLogHook h = dynamicLogWithPP $ defaultPP
     {
-        ppCurrent         = dzenColor "#A91919" "#1B1D1E" . pad
-      , ppVisible         = dzenColor "white" "#1B1D1E" . pad
-      , ppHidden          = dzenColor "white" "#1B1D1E" . pad
+        ppCurrent         = lemonbarColor "#A91919" "#1B1D1E"
+      , ppVisible         = lemonbarColor "grey" "#1B1D1E"
+      , ppHidden          = lemonbarColor "grey" "#1B1D1E"
       , ppHiddenNoWindows = const ""
-      , ppUrgent          = dzenColor "#ff0000" "#1B1D1E" . pad
+      , ppUrgent          = lemonbarColor "#ff0000" "#1B1D1E"
       , ppWsSep           = " "
-      , ppSep             = "  |  "
-      , ppOrder           = \(ws:l:t:e) -> [ws,t]
+      , ppTitle           = lemonbarColor "#849308" "#363636" . pad . take 40
+      , ppSep             = ""
+      , ppOrder           = \(ws:l:t:e) -> [ws, " %{F#1B1D1E}%{B#363636}\xe0b0", t,"%{F#363636}%{B-}\xe0b0%{F-}"]
       , ppOutput          = hPutStrLn h
     }
 
@@ -176,10 +179,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (equalSpacing 36 6 0 1 $ avoidStruts $ (
-    emptyBSP |||
-    GridRatio 1.1 ||| 
-    tiled )) |||  
+myLayout = (avoidStruts $ 
+    mouseResizableTile{ draggerType = BordersDragger }
+    ) |||  
     noBorders (fullscreenFull Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -194,30 +196,20 @@ myLayout = (equalSpacing 36 6 0 1 $ avoidStruts $ (
 myManageHook = composeAll
     [ className =? "Pidgin"         --> doFloat
     , className =? "Skype"          --> doFloat
-    , className =? "banshee"          --> doFloat
     , className =? "feh"          --> doIgnore
     ]
 
 myEventHook = ewmhDesktopsEventHook
 
-
-leftBar :: String -> String
-leftBar hostname = ""
---    | hostname == "psirus-desktop" = "conky | dzen2 -x '1000' -y '0' -o '180' -h '24' -w '680' -fn 'Droid Sans:size=10' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E'"
---    | otherwise = ""
-
 -- needed for Java Applications to work with XMonad
-myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D" <+> spawn (leftBar hostname)
+myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D"
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-myXmonadBar hostname
-    | hostname == "psirus-laptop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '700' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
-    | hostname == "psirus-desktop" = "dzen2 -x '0' -y '0' -o '180' -h '24' -w '1000' -fn 'Droid Sans:size=10' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
-    | otherwise = ""
+myXmonadBar = "lemonbar -f 'Droid Sans Mono for Powerline:size=10'"
 
 main = do
     hostname <- fmap nodeName getSystemID
-    dzenBar <- spawnPipe (myXmonadBar hostname)
+    xmobar <- spawnPipe myXmonadBar
     xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -232,6 +224,6 @@ main = do
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook dzenBar,
+        logHook            = myLogHook xmobar,
         startupHook        = myStartupHook hostname
         }

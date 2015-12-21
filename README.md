@@ -22,9 +22,8 @@ directory, and try to setup vundle for vim.
 Setup
 -----
 
-- Xmonad with BinarySpaceLayou
-- dzen2 with custom skype indicator
-- One set of dotfiles for desktop and notebook
+- Xmonad
+- Lemonbar
 
 Screenshot
 ----------
