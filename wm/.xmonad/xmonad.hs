@@ -35,27 +35,24 @@ myNormalBorderColor = "#888888"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#A91919"
 
-
-lemonbarColor :: String  -- ^ foreground color: a color name, or #rrggbb format
-              -> String  -- ^ background color
-              -> String  -- ^ output string
-              -> String
-lemonbarColor fg bg = wrap t ""
-    where t = concat ["%{F", fg, if null bg then "" else "}%{B" ++ bg, "}"]
-
 myLogHook h = dynamicLogWithPP $ defaultPP
     {
-        ppCurrent         = lemonbarColor "#A91919" "#1B1D1E"
-      , ppVisible         = lemonbarColor "grey" "#1B1D1E"
-      , ppHidden          = lemonbarColor "grey" "#1B1D1E"
-      , ppHiddenNoWindows = const ""
-      , ppUrgent          = lemonbarColor "#ff0000" "#1B1D1E"
+        ppCurrent         = xmobarColor "#A91919" "#1B1D1E" . const "■"
+      , ppVisible         = xmobarColor "white" "#1B1D1E" . const "■"
+      , ppHidden          = xmobarColor "grey" "#1B1D1E" . const "■"
+      , ppHiddenNoWindows = xmobarColor "#555555" "#1B1D1E" . const "■"
+--      , ppHiddenNoWindows = const ""
+      , ppUrgent          = xmobarColor "#ff0000" "#1B1D1E"
       , ppWsSep           = " "
-      , ppTitle           = lemonbarColor "#849308" "#363636" . pad . take 40
       , ppSep             = ""
-      , ppOrder           = \(ws:l:t:e) -> [ws, " %{F#1B1D1E}%{B#363636}\xe0b0", t,"%{F#363636}%{B-}\xe0b0%{F-}"]
+      , ppOrder           = \(ws:l:t:e) -> [ws]
       , ppOutput          = hPutStrLn h
     }
+
+titlePP = defaultPP {
+       ppTitle           = xmobarColor "#849308" "" . pad . shorten 70
+      , ppOrder           = \(ws:l:t:e) -> [t]
+}
 
 amixer hostname = "amixer " ++ card ++ "set Master "
     where
@@ -139,19 +136,6 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Raise Volume
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume hostname)
 
-    , ((modm, xK_n), sendMessage $ LessSpacing)
-    , ((modm .|. shiftMask, xK_n), sendMessage $ MoreSpacing)
-    , ((modm .|. controlMask, xK_n), sendMessage $ DefaultSpacing)
-    , ((modm .|. controlMask .|. shiftMask, xK_n), sendMessage $ NoSpacing)
-
-    , ((modm .|. shiftMask,               xK_l     ), sendMessage $ ExpandTowards R)
-    , ((modm .|. shiftMask,               xK_h     ), sendMessage $ ExpandTowards L)
-    , ((modm .|. shiftMask,               xK_j     ), sendMessage $ ExpandTowards D)
-    , ((modm .|. shiftMask,               xK_k     ), sendMessage $ ExpandTowards U)
-
-    , ((modm,                           xK_r     ), sendMessage Rotate)
-    , ((modm,                           xK_s     ), sendMessage Swap)
-    
     ]
     ++
 
@@ -179,19 +163,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (avoidStruts $ 
-    mouseResizableTile{ draggerType = BordersDragger }
-    ) |||  
+myLayout = (avoidStruts $ mouseResizableTile{ draggerType = BordersDragger }) |||  
     noBorders (fullscreenFull Full) 
-  where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-     -- The default number of windows in the master pane
-     nmaster = 1
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-     -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
 
 myManageHook = composeAll
     [ className =? "Pidgin"         --> doFloat
@@ -205,7 +178,7 @@ myEventHook = ewmhDesktopsEventHook
 myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D"
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-myXmonadBar = "lemonbar -f 'Droid Sans Mono for Powerline:size=10'"
+myXmonadBar = "xmobar"
 
 main = do
     hostname <- fmap nodeName getSystemID
@@ -224,6 +197,6 @@ main = do
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook xmobar,
+        logHook            = myLogHook xmobar <+> (dynamicLogString titlePP >>= xmonadPropLog),
         startupHook        = myStartupHook hostname
         }

@@ -22,7 +22,7 @@ xsetroot -cursor_name left_ptr &
 xset -b &
 if [ "$HOSTNAME" = "psirus-laptop" ]; then
     .screenlayout/extern_right.sh
-    feh --bg-scale ~/Bilder/Backgrounds/19371181752_65ddcbaeee_o.jpg &
+    feh --bg-scale ~/Bilder/Backgrounds/bg_img5.jpg &
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
     xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
@@ -38,6 +38,5 @@ fi
 export PATH=~/Code/Python/altay:~/.cabal/bin:~/Code/Bash:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
 export OSFONTDIR=/usr/share/fonts:$HOME/.fonts
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-python -u ~/.dotfiles/panel.py | lemonbar -f "Droid Sans Mono for Powerline:size=10" &
 
 exec xmonad
