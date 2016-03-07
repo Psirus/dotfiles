@@ -1,13 +1,10 @@
-if [[ ! -d ~/.vim/bundle/vundle ]]; then
-    mkdir -p ~/.vim/bundle
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
-if [[ ! -f /usr/lib/urxvt/perl/vtwheel ]]; then
-    sudo ln -sf ~/.dotfiles/vtwheel /usr/lib/urxvt/perl/vtwheel
+if [[ ! -d ~/.config/nvim/tmp ]]; then
+    mkdir -p ~/.config/nvim/tmp
+    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 stow wm
-stow vim
-mkdir -p ~/.vim/tmp
+stow nvim
+mkdir -p ~/.config/nvim/tmp
 stow git
 stow misc
 stow mpd
