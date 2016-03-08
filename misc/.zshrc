@@ -13,6 +13,7 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
+export PYTHONPATH=/home/cpohl/Code/C++/vtk_build/lib:/home/cpohl/Code/C++/vtk_build/Wrapping/Python
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
