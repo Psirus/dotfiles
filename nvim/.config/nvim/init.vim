@@ -14,6 +14,10 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-easy-align'
 " Better markdown syntax highlighting
 Plug 'plasticboy/vim-markdown'
+" Deoplete
+Plug 'shougo/deoplete.nvim'
+" CRTLP - fuzzy file finder
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -23,6 +27,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 set background=dark
 colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 " show line limit
 set cc=80
 
@@ -45,12 +50,17 @@ set directory=~/.config/nvim/tmp,.
 set tags=./tags;
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
+nnoremap # :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap Ü <C-O>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 nmap <Leader>a <Plug>(EasyAlign)
+" Tab completion
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
+" Start deoplete automatically
+let g:deoplete#enable_at_startup = 1
 
 " Markdown
 " --------
