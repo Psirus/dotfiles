@@ -17,20 +17,4 @@ Should be relatively painless::
     cd .dotfiles && ./init.sh
 
 The `init.sh` script will use Stow to link the dotifles into your home
-directory, and try to setup vundle for vim.
-
-Setup
------
-
-- Xmonad
-- Lemonbar
-
-Screenshot
-----------
-![Screenshot](screenshot.jpg)
-
-Feedback
---------
-
-Tell me what you think or whether you have any problems with my configs:
-https://github.com/Psirus/dotfiles/issues
+directory, and try to setup Plug for nvim.
