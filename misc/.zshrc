@@ -13,15 +13,16 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PYTHONPATH=/home/cpohl/Code/C++/vtk_build/lib:/home/cpohl/Code/C++/vtk_build/Wrapping/Python
+export PYTHONPATH=~/Code/Cpp/nuto/build/src
+
+export PATH=~/.local/bin:/usr/lib/llvm-3.6/bin:$PATH
+
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-
 typeset -A key
 
 key[Home]=${terminfo[khome]}
@@ -83,3 +84,6 @@ function up() {
     done
     cd $ups
 }
+
+alias nuto=~/Code/Cpp/nuto
+alias build=~/Code/Cpp/nuto/build
