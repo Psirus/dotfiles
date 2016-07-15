@@ -17,6 +17,8 @@ export PYTHONPATH=~/Code/Cpp/nuto/build/src
 
 export PATH=~/.local/bin:/usr/lib/llvm-3.6/bin:$PATH
 
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
 
 autoload -Uz up-line-or-beginning-search
