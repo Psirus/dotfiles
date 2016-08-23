@@ -32,6 +32,8 @@ Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-vinegar'
 " Debugger
 Plug 'critiqjo/lldb.nvim'
+" Build and quickfixes
+Plug 'neomake/neomake'
 call plug#end()
 filetype plugin indent on
 
@@ -120,3 +122,17 @@ nnoremap <esc> :noh<return><esc>
 :nmap <M-b> <Plug>LLBreakSwitch
 
 let g:ctrlp_custom_ignore = '\v[\/](build|release|build_gcc)$'
+
+set makeprg=ninja\ -C\ build
+" needed to filter out the superfluous ../ in the path
+set errorformat=%-G../%f:%s:,../%f:%l:%c:\ %trror:\ %m,../%f:%l:%c:\ %tarning:\ %m,../%f:%l:%c:\ %m,../%f:%l:\ %trror:\ %m,../%f:%l:\ %tarning:\ %m,../%f:%l:\ %m
+
+nmap <M-b> <Plug>LLBreakSwitch
+vmap <F2> <Plug>LLStdInSelected
+nnoremap <F4> :LLstdin<CR>
+nnoremap <F5> :LLmode debug<CR>
+nnoremap <S-F5> :LLmode code<CR>
+nnoremap <F8> :LL continue<CR>
+nnoremap <S-F8> :LL process interrupt<CR>
+nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
+vnoremap <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>

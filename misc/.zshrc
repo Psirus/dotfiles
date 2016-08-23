@@ -15,7 +15,7 @@ autoload -U zcalc
 
 export PYTHONPATH=~/Code/Cpp/nuto/build/src
 
-export PATH=~/.local/bin:/usr/lib/llvm-3.6/bin:$PATH
+export PATH=~/.cabal/bin:~/.local/bin:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
