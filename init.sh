@@ -5,3 +5,4 @@ fi
 stow nvim
 stow git
 stow misc
+stow mpd
