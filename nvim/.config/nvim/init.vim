@@ -34,6 +34,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'critiqjo/lldb.nvim'
 " Build and quickfixes
 Plug 'neomake/neomake'
+" Distraction free writing
+Plug 'junegunn/goyo.vim'
 call plug#end()
 filetype plugin indent on
 
