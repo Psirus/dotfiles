@@ -12,8 +12,6 @@ Plug 'morhetz/gruvbox'
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
 Plug 'junegunn/vim-easy-align'
-" Better markdown syntax highlighting
-Plug 'plasticboy/vim-markdown'
 " Auto-complete
 "Plug 'shougo/deoplete.nvim'
 "Plug 'zchee/deoplete-clang'
@@ -99,14 +97,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.5/lib/libclang.so'
 " let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-3.5/lib/clang'
+
 " Markdown
 " --------
-" Don't fold markdown
-" let g:vim_markdown_folding_disabled = 1
-" Highlight TeX math in markdon
-let g:vim_markdown_math = 1
-" Disable error checking for LaTeX syntax; yields false positives
-let g:tex_no_error = 1
 " gitit pages are markdown as well
 au BufNewFile,BufRead *.page set filetype=markdown
 
