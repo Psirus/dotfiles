@@ -9,5 +9,6 @@
 	ui = auto
 [core]
 	editor = nvim
+    whitespace = tab-in-indent
 [diff]
 	algorithm = patience

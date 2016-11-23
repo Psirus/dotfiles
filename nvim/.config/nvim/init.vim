@@ -15,7 +15,7 @@ Plug 'junegunn/vim-easy-align'
 " Auto-complete
 "Plug 'shougo/deoplete.nvim'
 "Plug 'zchee/deoplete-clang'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer' }
 " Syntax checking
 Plug 'scrooloose/syntastic'
 " CRTLP - fuzzy file finder
@@ -34,6 +34,10 @@ Plug 'critiqjo/lldb.nvim'
 Plug 'neomake/neomake'
 " Distraction free writing
 Plug 'junegunn/goyo.vim'
+" Build and quickfixes
+Plug 'pgdouyon/vim-accio'
+" Clang format
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 filetype plugin indent on
 
@@ -51,6 +55,9 @@ let g:gruvbox_contrast_dark='hard'
 " show line limit
 set cc=80
 set termguicolors
+
+let g:clang_format#detect_style_file = 1
+
 
 " General
 " -------
@@ -76,6 +83,9 @@ set incsearch
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.config/nvim/tmp,.
 set directory=~/.config/nvim/tmp,.
+
+set undofile
+set undodir=~/.config/nvim/tmp
 
 " search for tags in directories above cwd
 setglobal tags-=./tags tags-=./tags; tags^=./tags;
@@ -118,9 +128,11 @@ nnoremap <esc> :noh<return><esc>
 
 let g:ctrlp_custom_ignore = '\v[\/](build|release|build_gcc)$'
 
-set makeprg=ninja\ -C\ build
+set makeprg=ninja\ -C\ ../build
+nmap <F12> :Neomake!<CR>
 " needed to filter out the superfluous ../ in the path
-set errorformat=%-G../%f:%s:,../%f:%l:%c:\ %trror:\ %m,../%f:%l:%c:\ %tarning:\ %m,../%f:%l:%c:\ %m,../%f:%l:\ %trror:\ %m,../%f:%l:\ %tarning:\ %m,../%f:%l:\ %m
+"set errorformat=%-G../%f:%s:,../%f:%l:%c:\ %trror:\ %m,../%f:%l:%c:\ %tarning:\ %m,../%f:%l:%c:\ %m,../%f:%l:\ %trror:\ %m,../%f:%l:\ %tarning:\ %m,../%f:%l:\ %m
+set errorformat=%-G%f:%s:,%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m
 
 nmap <M-b> <Plug>LLBreakSwitch
 vmap <F2> <Plug>LLStdInSelected
@@ -131,3 +143,15 @@ nnoremap <F8> :LL continue<CR>
 nnoremap <S-F8> :LL process interrupt<CR>
 nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
 vnoremap <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
+nnoremap gb :ls<CR>:b
+
+map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>

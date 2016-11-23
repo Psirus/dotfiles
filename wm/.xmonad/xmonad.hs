@@ -71,7 +71,7 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch xfrun4
-    , ((modm,               xK_p     ), spawn "dmenu_run -h '24' -fn 'Droid Sans:size=10' -sb '#A91919' -nb '#1B1D1E' -nf '#FFFFFF'")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Droid Sans:size=10' -sb '#A91919' -nb '#1B1D1E' -nf '#FFFFFF'")
 
     -- close focused window
     , ((modm,               xK_F4    ), kill)

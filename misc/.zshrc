@@ -13,11 +13,15 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PYTHONPATH=~/Code/Cpp/nuto/build/src
+export PYTHONPATH=~/Code/Cpp/build/src
 
 export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+export MANPAGER="nvim -c 'set ft=man' -"
+
+export TEXINPUTS=.:~/Dokumente/mechanics/03_internalPresentations/BAM_CD/:$TEXINPUTS
 
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
 
@@ -88,4 +92,12 @@ function up() {
 }
 
 alias nuto=~/Code/Cpp/nuto
-alias build=~/Code/Cpp/nuto/build
+alias build=~/Code/Cpp/build
+
+run() {
+    number=$1
+    shift
+    for i in `seq $number`; do
+      $@ > /dev/null 2>&1
+    done
+}
