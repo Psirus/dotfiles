@@ -38,6 +38,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'pgdouyon/vim-accio'
 " Clang format
 Plug 'rhysd/vim-clang-format'
+" Markdown
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 filetype plugin indent on
 
@@ -113,6 +115,8 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " gitit pages are markdown as well
 au BufNewFile,BufRead *.page set filetype=markdown
 
+let g:vim_markdown_math = 1
+
 " search for files up to $HOME
 set path=.;$HOME
 
@@ -151,7 +155,3 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>

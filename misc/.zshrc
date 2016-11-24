@@ -93,11 +93,3 @@ function up() {
 
 alias nuto=~/Code/Cpp/nuto
 alias build=~/Code/Cpp/build
-
-run() {
-    number=$1
-    shift
-    for i in `seq $number`; do
-      $@ > /dev/null 2>&1
-    done
-}
