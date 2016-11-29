@@ -40,6 +40,8 @@ Plug 'pgdouyon/vim-accio'
 Plug 'rhysd/vim-clang-format'
 " Markdown
 Plug 'plasticboy/vim-markdown'
+" Tagbar
+Plug 'majutsushi/tagbar'
 call plug#end()
 filetype plugin indent on
 
@@ -128,7 +130,7 @@ let g:syntastic_cpp_clang_check_post_args = ""
 
 nnoremap <esc> :noh<return><esc>
 
-:nmap <M-b> <Plug>LLBreakSwitch
+nmap <M-b> <Plug>LLBreakSwitch
 
 let g:ctrlp_custom_ignore = '\v[\/](build|release|build_gcc)$'
 
@@ -136,7 +138,8 @@ set makeprg=ninja\ -C\ ../build
 nmap <F12> :Neomake!<CR>
 " needed to filter out the superfluous ../ in the path
 "set errorformat=%-G../%f:%s:,../%f:%l:%c:\ %trror:\ %m,../%f:%l:%c:\ %tarning:\ %m,../%f:%l:%c:\ %m,../%f:%l:\ %trror:\ %m,../%f:%l:\ %tarning:\ %m,../%f:%l:\ %m
-set errorformat=%-G%f:%s:,%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m
+"set errorformat=%-G%f:%s:,%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m
+set errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m,%-G%s
 
 nmap <M-b> <Plug>LLBreakSwitch
 vmap <F2> <Plug>LLStdInSelected
@@ -147,11 +150,18 @@ nnoremap <F8> :LL continue<CR>
 nnoremap <S-F8> :LL process interrupt<CR>
 nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
 vnoremap <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
-nnoremap gb :ls<CR>:b
 
+" Show buffers and wait for buffer to go to
+nnoremap gb :ls<CR>:b<space>
+
+" Go to header/cpp file
 map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+nmap <F10> :TagbarToggle<CR>
+
+
