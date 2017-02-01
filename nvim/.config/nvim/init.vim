@@ -42,6 +42,8 @@ Plug 'rhysd/vim-clang-format'
 Plug 'plasticboy/vim-markdown'
 " Tagbar
 Plug 'majutsushi/tagbar'
+" RTags
+Plug 'lyuts/vim-rtags'
 call plug#end()
 filetype plugin indent on
 
@@ -118,6 +120,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 au BufNewFile,BufRead *.page set filetype=markdown
 
 let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled = 1
 
 " search for files up to $HOME
 set path=.;$HOME
@@ -135,11 +138,10 @@ nmap <M-b> <Plug>LLBreakSwitch
 let g:ctrlp_custom_ignore = '\v[\/](build|release|build_gcc)$'
 
 set makeprg=ninja\ -C\ ../build
-nmap <F12> :Neomake!<CR>
-" needed to filter out the superfluous ../ in the path
-"set errorformat=%-G../%f:%s:,../%f:%l:%c:\ %trror:\ %m,../%f:%l:%c:\ %tarning:\ %m,../%f:%l:%c:\ %m,../%f:%l:\ %trror:\ %m,../%f:%l:\ %tarning:\ %m,../%f:%l:\ %m
-"set errorformat=%-G%f:%s:,%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m
 set errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m,%-G%s
+
+"set makeprg=ninja\ -C\ ../build_gcc
+nmap <F12> :Neomake!<CR>
 
 nmap <M-b> <Plug>LLBreakSwitch
 vmap <F2> <Plug>LLStdInSelected
@@ -164,4 +166,5 @@ map <right> <nop>
 
 nmap <F10> :TagbarToggle<CR>
 
-
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %

@@ -7,15 +7,18 @@ setopt nonomatch
 setopt extended_glob
 setopt no_bare_glob_qual
 
+# allow comments on the command line
+setopt interactivecomments
+
 unsetopt beep
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PYTHONPATH=~/Code/Cpp/build/src
+export PYTHONPATH=~/Code/Cpp/build/python
 
-export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
+export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -93,3 +96,4 @@ function up() {
 
 alias nuto=~/Code/Cpp/nuto
 alias build=~/Code/Cpp/build
+alias gdiff='git diff --color | diff-so-fancy | less -RFX'
