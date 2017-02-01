@@ -67,6 +67,10 @@ let g:clang_format#detect_style_file = 1
 
 " General
 " -------
+
+" map the leader key to the spacebar
+let mapleader = ' '
+
 " leave 10 lines at top & bottom while scrolling
 set scrolloff=10
 set sidescrolloff=5
