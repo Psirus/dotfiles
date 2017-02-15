@@ -18,7 +18,7 @@ autoload -U zcalc
 
 export PYTHONPATH=~/Code/Cpp/build/python
 
-export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:$PATH
+export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/local/texlive/2016/bin/x86_64-linux:/usr/lib/ccache:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -26,7 +26,9 @@ export MANPAGER="nvim -c 'set ft=man' -"
 
 export TEXINPUTS=.:~/Dokumente/mechanics/03_internalPresentations/BAM_CD/:$TEXINPUTS
 
+source ~/Code/Bash/zsh-git-prompt/zshrc.sh
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
+RPROMPT='$(git_super_status)'
 
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search

@@ -122,6 +122,8 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " --------
 " gitit pages are markdown as well
 au BufNewFile,BufRead *.page set filetype=markdown
+au BufWritePost *.reveal :silent exec "!make"
+
 
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
