@@ -5,8 +5,7 @@ set nocompatible              " be iMproved, required
 call plug#begin('~/.config/nvim/plugged')
 " Nice status line
 Plug 'bling/vim-airline'
-" Nice color scheme
-Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline-themes'
 " Different cursor shape depending on mode
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
@@ -39,6 +38,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'lyuts/vim-rtags'
 " Commenter
 Plug 'scrooloose/nerdcommenter'
+" Color schemes
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 
@@ -47,7 +49,8 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 set termguicolors
-
+set foldcolumn=1
+hi FoldColumn guibg=bg
 
 " Mappings
 " --------
@@ -59,17 +62,15 @@ nnoremap Ü <C-O>
 
 " fixit
 nmap <Leader>f :YcmCompleter FixIt<CR>
+" toggle line numbers
+nmap <leader>n :set invrelativenumber<CR>
+" Easily switch between files; CRTL+^ is not easily reachable on neo
+nmap <leader>s <C-^>
+" quickly edit my vimrc
+nmap <leader>v :e ~/.config/nvim/init.vim<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
-
-" Easily switch between files; CRTL+^ is not easily reachable on neo
-nmap <leader>s <C-^>
-
-" quickly edit my vimrc
-nmap <leader>v :e ~/.config/nvim/init.vim<CR>
 
 " remove search highlighting on escape
 nnoremap <esc> :noh<return><esc>
@@ -130,6 +131,7 @@ let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline_section_error = '' 
 let g:airline_section_warning = ''
+let g:airline_theme = "hybrid"
 
 
 " Clang Format
