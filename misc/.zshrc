@@ -16,7 +16,7 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PYTHONPATH=~/Code/Cpp/build/python
+export PYTHONPATH=~/Code/Cpp/build/python:/usr/lib/llvm-3.9/lib/python2.7/site-packages/lldb
 
 export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/local/texlive/2016/bin/x86_64-linux:/usr/lib/ccache:$PATH
 

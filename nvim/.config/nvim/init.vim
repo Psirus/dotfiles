@@ -138,6 +138,11 @@ let g:airline_theme = "hybrid"
 " ------------
 let g:clang_format#detect_style_file = 1
 
+" CTRL-P
+" ------
+" I have submodules in git, and if you are in a 'sub' file it won't find
+" 'parent' files
+let g:ctrlp_working_path_mode = 'rwa'
 
 " Goyo
 " ----
