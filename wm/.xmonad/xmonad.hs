@@ -33,7 +33,7 @@ myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 myNormalBorderColor :: String
 myNormalBorderColor = "#888888"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#A91919"
+myFocusedBorderColor = "#79740e"
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     {
