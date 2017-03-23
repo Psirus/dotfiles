@@ -112,6 +112,9 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
 
+    -- Open czech grammar
+    , ((modm,               xK_c     ), spawn "zathura ~/Dokumente/Prag/Czech\\ An\\ Essential\\ Grammar.pdf & sh -c 'cd ~/Wiki/wikidata/Czech && nvim-wrapper .'")
+
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 

@@ -37,6 +37,8 @@ Plug 'rhysd/vim-clang-format'
 Plug 'plasticboy/vim-markdown'
 " RTags
 Plug 'lyuts/vim-rtags'
+" Commenter
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 
@@ -54,6 +56,9 @@ let mapleader = ' '
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
+
+" fixit
+nmap <Leader>f :YcmCompleter FixIt<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -81,7 +86,7 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 
 

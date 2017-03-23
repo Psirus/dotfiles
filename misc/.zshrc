@@ -99,3 +99,8 @@ function up() {
 alias nuto=~/Code/Cpp/nuto
 alias build=~/Code/Cpp/build
 alias gdiff='git diff --color | diff-so-fancy | less -RFX'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# i've done something i've regretted more than once
+alias rm=trash
