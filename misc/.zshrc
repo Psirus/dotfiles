@@ -26,9 +26,9 @@ export MANPAGER="nvim -c 'set ft=man' -"
 
 export TEXINPUTS=.:~/Dokumente/mechanics/03_internalPresentations/BAM_CD/:$TEXINPUTS
 
-source ~/Code/Bash/zsh-git-prompt/zshrc.sh
+[ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && source ~/Code/Bash/zsh-git-prompt/zshrc.sh
+[ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && RPROMPT='$(git_super_status)'
 PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}"
-RPROMPT='$(git_super_status)'
 
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
