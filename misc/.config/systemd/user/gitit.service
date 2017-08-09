@@ -1,0 +1,8 @@
+[Unit]
+Description=Gitit
+
+[Service]
+ExecStart=/bin/sh -c 'cd /home/cpohl/Wiki && exec gitit -f my.conf'
+
+[Install]
+WantedBy=default.target

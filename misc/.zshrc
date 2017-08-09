@@ -18,7 +18,7 @@ autoload -U zcalc
 
 export PYTHONPATH=~/Code/Cpp/build/python:/usr/lib/llvm-3.9/lib/python2.7/site-packages/lldb
 
-export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/local/texlive/2016/bin/x86_64-linux:/usr/lib/ccache:$PATH
+export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/lib/ccache:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -104,3 +104,8 @@ alias gdiff='git diff --color | diff-so-fancy | less -RFX'
 
 # i've done something i've regretted more than once
 alias rm=trash
+
+alias nja="ninja -C ~/Code/Cpp/build"
+alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
+
+function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}

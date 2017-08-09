@@ -11,7 +11,7 @@ Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
 Plug 'junegunn/vim-easy-align'
 " Auto-complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer', 'for': 'cpp' }
 " Syntax checking
 Plug 'scrooloose/syntastic'
 " CRTLP - fuzzy file finder
@@ -41,6 +41,12 @@ Plug 'scrooloose/nerdcommenter'
 " Color schemes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+" Snippets
+Plug 'SirVer/ultisnips'
+" Tables
+Plug 'dhruvasagar/vim-table-mode'
+" TeX
+Plug 'lervag/vimtex'
 call plug#end()
 
 
@@ -49,8 +55,6 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 set termguicolors
-set foldcolumn=1
-hi FoldColumn guibg=bg
 
 " Mappings
 " --------
@@ -122,6 +126,14 @@ set undodir=~/.config/nvim/tmp
 " search for files up to $HOME
 set path=.;$HOME
 
+set clipboard+=unnamedplus
+
+set inccommand=split
+
+set mouse=a
+
+" treat swig interface files as cpp
+au BufNewFile,BufRead *.i set filetype=cpp
 
 " Airline
 " -------

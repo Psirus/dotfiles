@@ -1,8 +1,0 @@
-[Unit]
-Description=RTags daemon
-
-Requires=rdm.socket
-
-[Service]
-Type=simple
-ExecStart=/home/cpohl/Code/Cpp/rtags/bin/rdm -v --inactivity-timeout 300 --log-flush

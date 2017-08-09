@@ -3,8 +3,6 @@
 	name = Christoph Pohl
 [push]
 	default = simple
-[branch]
-    autosetuprebase = always
 [color]
 	ui = auto
 [core]
@@ -12,3 +10,5 @@
     whitespace = tab-in-indent
 [diff]
 	algorithm = patience
+[pull]
+	rebase = true

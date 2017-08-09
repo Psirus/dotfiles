@@ -1,0 +1,8 @@
+[Unit]
+Description=RTags deamon
+
+[Service]
+ExecStart=%h/Code/Cpp/rtags/bin/rdm
+
+[Install]
+WantedBy=default.target
