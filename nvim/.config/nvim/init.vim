@@ -47,6 +47,14 @@ Plug 'SirVer/ultisnips'
 Plug 'dhruvasagar/vim-table-mode'
 " TeX
 Plug 'lervag/vimtex'
+" Orgmode
+Plug 'jceb/vim-orgmode'
+" Speeddating
+Plug 'tpope/vim-speeddating'
+" Universal text linking
+Plug 'vim-scripts/utl.vim'
+" Repeat
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 
@@ -59,6 +67,7 @@ set termguicolors
 " Mappings
 " --------
 let mapleader = ' '
+let maplocalleader = ' '
 
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
