@@ -33,7 +33,7 @@ myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 myNormalBorderColor :: String
 myNormalBorderColor = "#888888"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#79740e"
+myFocusedBorderColor = "#98971a"
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     {
@@ -139,6 +139,8 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Raise Volume
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume hostname)
 
+    , ((modm, xK_b), sendMessage ToggleStruts)
+
     ]
     ++
 
@@ -152,7 +154,7 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_e, xK_w] [0..]
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -166,7 +168,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (avoidStruts $ mouseResizableTile{ draggerType = BordersDragger }) |||  
+myLayout = (avoidStruts $ smartBorders $ mouseResizableTile{ draggerType = BordersDragger }) |||  
     noBorders (fullscreenFull Full) 
 
 myManageHook = composeAll
@@ -175,12 +177,11 @@ myManageHook = composeAll
     , className =? "feh"          --> doIgnore
     ]
 
-myEventHook = ewmhDesktopsEventHook
+myEventHook = ewmhDesktopsEventHook <+> docksEventHook
 
 -- needed for Java Applications to work with XMonad
-myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D"
+myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D" <+> docksStartupHook
 
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myXmonadBar = "xmobar"
 
 main = do
