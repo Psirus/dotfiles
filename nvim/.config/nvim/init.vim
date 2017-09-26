@@ -24,8 +24,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'sjl/gundo.vim'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
-" Debugger
-Plug 'critiqjo/lldb.nvim'
 " Build and quickfixes
 Plug 'neomake/neomake'
 " Distraction free writing
@@ -41,6 +39,8 @@ Plug 'scrooloose/nerdcommenter'
 " Color schemes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
 " Snippets
 Plug 'SirVer/ultisnips'
 " Tables
@@ -55,6 +55,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'vim-scripts/utl.vim'
 " Repeat
 Plug 'tpope/vim-repeat'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -153,6 +155,8 @@ let g:airline_section_y = ''
 let g:airline_section_error = '' 
 let g:airline_section_warning = ''
 let g:airline_theme = "hybrid"
+"let g:airline_left_sep = "\uE0CC"
+"let g:airline_right_sep = "\uE0CD"
 
 
 " Clang Format
@@ -210,3 +214,22 @@ let g:syntastic_cpp_clang_check_post_args = ""
 " -------------
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" vimtex
+" ------
+let g:vimtex_compiler_latexmk = {
+\ 'backend' : 'nvim',
+\ 'background' : 1,
+\ 'build_dir' : '',
+\ 'callback' : 1,
+\ 'continuous' : 1,
+\ 'executable' : 'latexmk',
+\ 'options' : [
+\   '-pdf',
+\   '-pdflatex=lualatex',
+\   '-verbose',
+\   '-file-line-error',
+\   '-synctex=1',
+\   '-interaction=nonstopmode',
+\ ],
+\}
