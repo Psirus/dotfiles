@@ -16,8 +16,6 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PYTHONPATH=~/Code/Cpp/build/python:/usr/lib/llvm-3.9/lib/python2.7/site-packages/lldb
-
 export PATH=~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/lib/ccache:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
@@ -108,4 +106,4 @@ alias rm=trash
 alias nja="ninja -C ~/Code/Cpp/build"
 alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
 
-function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
+function ssht () {/usr/bin/ssh -t $@ "/home/cpohl/tmux -2 attach || /home/cpohl/tmux -2 new";}
