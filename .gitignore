@@ -4,3 +4,4 @@
 *.log
 xmonad-x86_64-linux
 nvim/.config/systemd/user/default.target.wants/*
+*.state

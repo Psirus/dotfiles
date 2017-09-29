@@ -154,7 +154,7 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e] [0..]
+        | (key, sc) <- zip [xK_e, xK_w] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $

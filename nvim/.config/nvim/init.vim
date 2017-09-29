@@ -1,5 +1,3 @@
-set nocompatible              " be iMproved, required
-
 " Plugins
 " --------
 call plug#begin('~/.config/nvim/plugged')
@@ -41,6 +39,7 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'mhartington/oceanic-next'
+Plug 'trusktr/seti.vim'
 " Snippets
 Plug 'SirVer/ultisnips'
 " Tables
@@ -51,6 +50,8 @@ Plug 'lervag/vimtex'
 Plug 'jceb/vim-orgmode'
 " Speeddating
 Plug 'tpope/vim-speeddating'
+" Shell commands from vim, sugarized
+Plug 'tpope/vim-eunuch'
 " Universal text linking
 Plug 'vim-scripts/utl.vim'
 " Repeat
@@ -155,8 +156,6 @@ let g:airline_section_y = ''
 let g:airline_section_error = '' 
 let g:airline_section_warning = ''
 let g:airline_theme = "hybrid"
-"let g:airline_left_sep = "\uE0CC"
-"let g:airline_right_sep = "\uE0CD"
 
 
 " Clang Format
