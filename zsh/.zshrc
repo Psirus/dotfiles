@@ -108,4 +108,4 @@ alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
 
 function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
 
-. /usr/lib/z.sh
+. ~/.dotfiles/z/z.sh
