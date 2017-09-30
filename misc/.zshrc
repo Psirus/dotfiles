@@ -106,4 +106,6 @@ alias rm=trash
 alias nja="ninja -C ~/Code/Cpp/build"
 alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
 
-function ssht () {/usr/bin/ssh -t $@ "/home/cpohl/tmux -2 attach || /home/cpohl/tmux -2 new";}
+function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
+
+. /usr/lib/z.sh

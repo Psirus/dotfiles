@@ -8,8 +8,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
 Plug 'junegunn/vim-easy-align'
-" Auto-complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer', 'for': 'cpp' }
+" The laptop is just too slow
+if hostname() != "psirus-laptop"
+    " Auto-complete
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer', 'for': 'cpp' }
+endif
 " Syntax checking
 Plug 'scrooloose/syntastic'
 " CRTLP - fuzzy file finder
@@ -146,6 +149,9 @@ set mouse=a
 
 " treat swig interface files as cpp
 au BufNewFile,BufRead *.i set filetype=cpp
+
+" switch between buffers, even if current buffer was modified
+set hidden
 
 " Airline
 " -------
