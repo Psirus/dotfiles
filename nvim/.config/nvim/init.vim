@@ -2,8 +2,7 @@
 " --------
 call plug#begin('~/.config/nvim/plugged')
 " Nice status line
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
 " Different cursor shape depending on mode
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
@@ -38,10 +37,7 @@ Plug 'lyuts/vim-rtags'
 " Commenter
 Plug 'scrooloose/nerdcommenter'
 " Color schemes
-Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'mhartington/oceanic-next'
 Plug 'trusktr/seti.vim'
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -50,7 +46,8 @@ Plug 'dhruvasagar/vim-table-mode'
 " TeX
 Plug 'lervag/vimtex'
 " Orgmode
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
+Plug '~/Code/VimL/vim-orgmode'
 " Speeddating
 Plug 'tpope/vim-speeddating'
 " Shell commands from vim, sugarized
@@ -59,8 +56,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'vim-scripts/utl.vim'
 " Repeat
 Plug 'tpope/vim-repeat'
-" Devicons
-Plug 'ryanoasis/vim-devicons'
+Plug 'dahu/LearnVim'
 call plug#end()
 
 
@@ -153,16 +149,17 @@ au BufNewFile,BufRead *.i set filetype=cpp
 " switch between buffers, even if current buffer was modified
 set hidden
 
-" Airline
+" Lightline
 " -------
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_error = '' 
-let g:airline_section_warning = ''
-let g:airline_theme = "hybrid"
-
+set noshowmode
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified'] ],
+      \ 'right': [ [ 'lineinfo' ],
+      \            [ 'percent' ],
+      \            [ 'filetype' ]] }
+      \ }
 
 " Clang Format
 " ------------
@@ -176,7 +173,7 @@ let g:ctrlp_working_path_mode = 'rwa'
 
 " Goyo
 " ----
-let g:goyo_width = 120
+let g:goyo_width = 80
 
 
 " Markdown
