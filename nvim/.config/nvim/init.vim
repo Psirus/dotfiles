@@ -2,7 +2,7 @@
 " --------
 call plug#begin('~/.config/nvim/plugged')
 " Nice status line
-"Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 " Different cursor shape depending on mode
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
@@ -13,7 +13,7 @@ if hostname() != "psirus-laptop"
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer', 'for': 'cpp' }
 endif
 " Syntax checking
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 " CRTLP - fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
 " Ack
@@ -57,6 +57,12 @@ Plug 'vim-scripts/utl.vim'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
+" Debugger
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'idanarye/vim-vebugger'
+" Close all buffers but the current one
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'julialang/julia-vim'
 call plug#end()
 
 
@@ -78,7 +84,10 @@ nnoremap Ü <C-O>
 " fixit
 nmap <Leader>f :YcmCompleter FixIt<CR>
 " toggle line numbers
-nmap <leader>n :set invrelativenumber<CR>
+"nmap <leader>n :set invrelativenumber<CR>
+" next in quickfix list
+nmap <leader>n :cn<CR>
+
 " Easily switch between files; CRTL+^ is not easily reachable on neo
 nmap <leader>s <C-^>
 " quickly edit my vimrc
@@ -145,6 +154,7 @@ set mouse=a
 
 " treat swig interface files as cpp
 au BufNewFile,BufRead *.i set filetype=cpp
+au BufNewFile,BufRead *.tikz set filetype=tex
 
 " switch between buffers, even if current buffer was modified
 set hidden
@@ -170,6 +180,7 @@ let g:clang_format#detect_style_file = 1
 " I have submodules in git, and if you are in a 'sub' file it won't find
 " 'parent' files
 let g:ctrlp_working_path_mode = 'rwa'
+let g:ctrlp_custom_ignore = { 'dir': 'build_doxygen' }
 
 " Goyo
 " ----
@@ -186,7 +197,7 @@ let g:vim_markdown_folding_disabled = 1
 
 " Neomake
 " -------
-set makeprg=ninja\ -C\ ../build
+set makeprg=ninja\ -C\ ../build\ unit\ integrationtests\ examples
 set errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m,%-G%s
 nmap <F12> :Neomake!<CR>
 
@@ -216,6 +227,7 @@ let g:syntastic_cpp_clang_check_post_args = ""
 " -------------
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " vimtex
 " ------
@@ -235,3 +247,8 @@ let g:vimtex_compiler_latexmk = {
 \   '-interaction=nonstopmode',
 \ ],
 \}
+
+" Ack
+let g:ackprg = "ag --ignore doc"
+
+let g:vebugger_leader='<Leader>d'
