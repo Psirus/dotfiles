@@ -154,7 +154,13 @@ set mouse=a
 
 " treat swig interface files as cpp
 au BufNewFile,BufRead *.i set filetype=cpp
+
+" tikz, cls and tex are likely LaTeX files
 au BufNewFile,BufRead *.tikz set filetype=tex
+au BufNewFile,BufRead *.cls set filetype=tex
+au BufNewFile,BufRead *.tex set foldmethod=expr
+au BufNewFile,BufRead *.tex set foldexpr=vimtex#fold#level(v:lnum)
+au BufNewFile,BufRead *.tex set foldtext=vimtex#fold#text()
 
 " switch between buffers, even if current buffer was modified
 set hidden
