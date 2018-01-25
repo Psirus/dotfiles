@@ -158,6 +158,7 @@ au BufNewFile,BufRead *.i set filetype=cpp
 " tikz, cls and tex are likely LaTeX files
 au BufNewFile,BufRead *.tikz set filetype=tex
 au BufNewFile,BufRead *.cls set filetype=tex
+au BufNewFile,BufRead *.tex set filetype=tex
 au BufNewFile,BufRead *.tex set foldmethod=expr
 au BufNewFile,BufRead *.tex set foldexpr=vimtex#fold#level(v:lnum)
 au BufNewFile,BufRead *.tex set foldtext=vimtex#fold#text()
@@ -258,3 +259,30 @@ let g:vimtex_compiler_latexmk = {
 let g:ackprg = "ag --ignore doc"
 
 let g:vebugger_leader='<Leader>d'
+
+" Reformat lines (getting the spacing correct)
+fun! TeX_fmt()
+    if (getline(".") != "")
+    let save_cursor = getpos(".")
+        let op_wrapscan = &wrapscan
+        set nowrapscan
+        let par_begin = '^\(%D\)\=\s*\($\|\\label\|\\begin\|\\end\|\\\[\|\\\]\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\|\\noindent\>\)'
+        let par_end   = '^\(%D\)\=\s*\($\|\\label\|\\begin\|\\end\|\\\[\|\\\]\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\)'
+    try
+      exe '?'.par_begin.'?+'
+    catch /E384/
+      1
+    endtry
+        norm V
+    try
+      exe '/'.par_end.'/-'
+    catch /E385/
+      $
+    endtry
+    norm gq
+        let &wrapscan = op_wrapscan
+    call setpos('.', save_cursor)
+    endif
+endfun
+
+nmap Q :call TeX_fmt()<CR>
