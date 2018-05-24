@@ -2,7 +2,7 @@
 	email = christophpohl@gmx.com
 	name = Christoph Pohl
 [push]
-	default = simple
+	default = current
 [color]
 	ui = auto
 [core]

@@ -170,7 +170,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = (avoidStruts $ smartBorders $ mouseResizableTile{ draggerType = BordersDragger }) |||  
+myLayout = (avoidStruts $ smartBorders $ (mouseResizableTile{ draggerType = BordersDragger } ||| Mirror mouseResizableTile{draggerType = BordersDragger})) |||  
     noBorders (fullscreenFull Full) 
 
 myManageHook = composeAll

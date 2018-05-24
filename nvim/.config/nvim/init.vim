@@ -10,7 +10,7 @@ Plug 'junegunn/vim-easy-align'
 " The laptop is just too slow
 if hostname() != "psirus-laptop"
     " Auto-complete
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer', 'for': 'cpp' }
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
 endif
 " Syntax checking
 "Plug 'scrooloose/syntastic'
@@ -38,6 +38,7 @@ Plug 'lyuts/vim-rtags'
 Plug 'scrooloose/nerdcommenter'
 " Color schemes
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'trusktr/seti.vim'
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -68,9 +69,8 @@ call plug#end()
 
 " Appearance
 " ----------
-set background=dark
-colorscheme gruvbox
-set termguicolors
+"set background=dark
+colorscheme solarized
 
 " Mappings
 " --------
@@ -114,6 +114,7 @@ map <right> <nop>
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 
+nnoremap <leader>y :0,$!yapf3<CR>
 
 " Behaviour
 " ---------
@@ -163,6 +164,7 @@ au BufNewFile,BufRead *.tex set foldmethod=expr
 au BufNewFile,BufRead *.tex set foldexpr=vimtex#fold#level(v:lnum)
 au BufNewFile,BufRead *.tex set foldtext=vimtex#fold#text()
 
+
 " switch between buffers, even if current buffer was modified
 set hidden
 
@@ -170,6 +172,7 @@ set hidden
 " -------
 set noshowmode
 let g:lightline = {
+    \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified'] ],
@@ -181,6 +184,7 @@ let g:lightline = {
 " Clang Format
 " ------------
 let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 0
 
 " CTRL-P
 " ------
@@ -251,6 +255,7 @@ let g:vimtex_compiler_latexmk = {
 \   '-verbose',
 \   '-file-line-error',
 \   '-synctex=1',
+\   '-shell-escape',
 \   '-interaction=nonstopmode',
 \ ],
 \}
