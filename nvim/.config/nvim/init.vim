@@ -12,16 +12,12 @@ if hostname() != "psirus-laptop"
     " Auto-complete
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
 endif
-" Syntax checking
-"Plug 'scrooloose/syntastic'
 " CRTLP - fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
 " Ack
 Plug 'mileszs/ack.vim'
 " Git Wrapper
 Plug 'tpope/vim-fugitive'
-" Undo tree visualization
-Plug 'sjl/gundo.vim'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
 " Build and quickfixes
@@ -40,8 +36,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'trusktr/seti.vim'
-" Snippets
-Plug 'SirVer/ultisnips'
 " Tables
 Plug 'dhruvasagar/vim-table-mode'
 " TeX
@@ -61,9 +55,6 @@ Plug 'dahu/LearnVim'
 " Debugger
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'idanarye/vim-vebugger'
-" Close all buffers but the current one
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'julialang/julia-vim'
 call plug#end()
 
 
@@ -211,27 +202,6 @@ let g:vim_markdown_folding_disabled = 1
 set makeprg=ninja\ -C\ ../build\ unit\ integrationtests\ examples
 set errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m,%-G%s
 nmap <F12> :Neomake!<CR>
-
-
-" LLDB
-" ----
-nmap <M-b> <Plug>LLBreakSwitch
-vmap <F2> <Plug>LLStdInSelected
-nnoremap <F4> :LLstdin<CR>
-nnoremap <F5> :LLmode debug<CR>
-nnoremap <S-F5> :LLmode code<CR>
-nnoremap <F8> :LL continue<CR>
-nnoremap <S-F8> :LL process interrupt<CR>
-nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
-vnoremap <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
-
-
-" Syntastic
-" ---------
-let g:syntastic_cpp_checkers = ["clang_tidy", "clang_check", "cppcheck"]
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_clang_tidy_post_args = ""
-let g:syntastic_cpp_clang_check_post_args = ""
 
 
 " YouCompleteMe
