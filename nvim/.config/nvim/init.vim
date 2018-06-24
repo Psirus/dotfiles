@@ -60,8 +60,9 @@ call plug#end()
 
 " Appearance
 " ----------
-"set background=dark
-colorscheme solarized
+set background=dark
+colorscheme gruvbox
+set termguicolors
 
 " Mappings
 " --------
@@ -163,7 +164,7 @@ set hidden
 " -------
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'molokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified'] ],
