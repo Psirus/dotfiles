@@ -21,11 +21,13 @@ Plug 'tpope/vim-fugitive'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
 " Build and quickfixes
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 " Distraction free writing
 Plug 'junegunn/goyo.vim'
 " Clang format
 Plug 'rhysd/vim-clang-format'
+" Black - Python formatter
+Plug 'ambv/black'
 " Markdown
 Plug 'plasticboy/vim-markdown'
 " RTags
@@ -55,6 +57,9 @@ Plug 'dahu/LearnVim'
 " Debugger
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'idanarye/vim-vebugger'
+" Close all buffers but the current one
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 
@@ -97,11 +102,12 @@ nnoremap gb :ls<CR>:b<space>
 " Go to header/cpp file
 map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-" hard mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nmap <leader>pd ofrom<space>IPython<space>import<space>embed;<space>embed()<ESC>
+nmap <leader>m :make<CR>
+
+inoremap ii <esc>
+vnoremap ii <esc>
+cnoremap ii <C-c>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
@@ -115,12 +121,13 @@ set scrolloff=10
 set sidescrolloff=5
 
 " Indentation
-set autoindent
+set noautoindent
 set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+let g:vimtex_indent_enabled=0
 
 set ttimeout
 set ttimeoutlen=100
@@ -156,6 +163,8 @@ au BufNewFile,BufRead *.tex set foldmethod=expr
 au BufNewFile,BufRead *.tex set foldexpr=vimtex#fold#level(v:lnum)
 au BufNewFile,BufRead *.tex set foldtext=vimtex#fold#text()
 
+" for python files, set python3 as make
+autocmd Filetype python setlocal makeprg=python3\ %
 
 " switch between buffers, even if current buffer was modified
 set hidden
@@ -197,13 +206,11 @@ au BufNewFile,BufRead *.page set filetype=markdown
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 
-
-" Neomake
-" -------
-set makeprg=ninja\ -C\ ../build\ unit\ integrationtests\ examples
-set errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %tarning:\ %m,%f:%l:%c:\ %m,%f:%l:\ %trror:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:\ %m,%-G%s
-nmap <F12> :Neomake!<CR>
-
+" Syntastic
+" ---------
+let b:syntastic_mode = "passive"
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ["pylint"]
 
 " YouCompleteMe
 " -------------
@@ -262,3 +269,5 @@ fun! TeX_fmt()
 endfun
 
 nmap Q :call TeX_fmt()<CR>
+
+let g:syntastic_python_pylint_args="--disable=invalid-name"

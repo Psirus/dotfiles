@@ -1,7 +1,7 @@
 # History
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt appendhistory autocd HIST_IGNORE_DUPS
 setopt nonomatch
 setopt extended_glob
@@ -16,13 +16,17 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 autoload -U zcalc
 
-export PATH=~/.julia/bin:~/.cargo/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/lib/ccache:$PATH
+DIRSTACKSIZE=10
+setopt autopushd pushdminus pushdsilent pushdtohome
+alias dh='dirs -v'
+
+export PATH=~/.julia/bin:~/.cargo/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/lib/ccache:/opt/anaconda3/bin:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
-export TEXINPUTS=.:~/Dokumente/mechanics/03_internalPresentations/BAM_CD/:$TEXINPUTS
+export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS
 
 [ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && source ~/Code/Bash/zsh-git-prompt/zshrc.sh
 [ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && RPROMPT='$(git_super_status)'
@@ -114,3 +118,5 @@ alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
 function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
 
 . ~/.dotfiles/z/z.sh
+
+source /usr/local/share/dolfin/dolfin.conf
