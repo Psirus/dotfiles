@@ -28,9 +28,6 @@ export MANPAGER="nvim -c 'set ft=man' -"
 
 export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS
 
-[ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && source ~/Code/Bash/zsh-git-prompt/zshrc.sh
-[ -f ~/Code/Bash/zsh-git-prompt/zshrc.sh ] && RPROMPT='$(git_super_status)'
-
 case $(hostname) in 
     ws6779)         PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
     psirus-desktop) PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
