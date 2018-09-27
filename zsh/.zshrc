@@ -29,8 +29,7 @@ export MANPAGER="nvim -c 'set ft=man' -"
 export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS
 
 case $(hostname) in 
-    ws6779)         PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
-    psirus-desktop) PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
+    ws6779|lena)         PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
     *)              PROMPT="%{$fg_no_bold[blue]%}%n|%1~» %{$reset_color%}";;
 esac
 
@@ -76,10 +75,7 @@ zle -N zle-line-finish
 # Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lh'
-alias merge='git mergetool -t gvimdiff'
 alias -s pdf='zathura'
-alias -s jpg='viewnior'
-alias tlmgr='sudo env PATH=$PATH tlmgr'
 alias :q='exit'
 function gitsearch() {
     git grep "$*" $(git rev-list --all)
@@ -104,16 +100,9 @@ alias nuto=~/Code/Cpp/nuto
 alias build=~/Code/Cpp/build
 alias gdiff='git diff --color | diff-so-fancy | less -RFX'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # i've done something i've regretted more than once
 alias rm=trash
-
-alias nja="ninja -C ~/Code/Cpp/build"
-alias paper="cd /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/paper"
 
 function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
 
 . ~/.dotfiles/z/z.sh
-
-source /usr/local/share/dolfin/dolfin.conf
