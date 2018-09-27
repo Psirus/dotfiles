@@ -7,11 +7,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
 Plug 'junegunn/vim-easy-align'
-" The laptop is just too slow
-if hostname() != "psirus-laptop"
-    " Auto-complete
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
-endif
 " CRTLP - fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
 " Ack
