@@ -173,7 +173,7 @@ set hidden
 " -------
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'molokai',
+    \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified'] ],
