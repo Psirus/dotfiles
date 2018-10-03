@@ -36,10 +36,6 @@ Plug 'tpope/vim-eunuch'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
-" Close all buffers but the current one
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 
@@ -57,7 +53,7 @@ let maplocalleader = ' '
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
-"
+
 " next in quickfix list
 nmap <leader>n :cn<CR>
 
