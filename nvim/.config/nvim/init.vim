@@ -15,8 +15,6 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
-" Build and quickfixes
-"Plug 'neomake/neomake'
 " Distraction free writing
 Plug 'junegunn/goyo.vim'
 " Clang format
@@ -49,9 +47,6 @@ Plug 'vim-scripts/utl.vim'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
-" Debugger
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'idanarye/vim-vebugger'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
@@ -76,7 +71,6 @@ nnoremap Ü <C-O>
 " fixit
 nmap <Leader>f :YcmCompleter FixIt<CR>
 " toggle line numbers
-"nmap <leader>n :set invrelativenumber<CR>
 " next in quickfix list
 nmap <leader>n :cn<CR>
 
@@ -201,17 +195,6 @@ au BufNewFile,BufRead *.page set filetype=markdown
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 
-" Syntastic
-" ---------
-let b:syntastic_mode = "passive"
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ["pylint"]
-
-" YouCompleteMe
-" -------------
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " vimtex
 " ------

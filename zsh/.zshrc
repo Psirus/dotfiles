@@ -29,8 +29,8 @@ export MANPAGER="nvim -c 'set ft=man' -"
 export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS
 
 case $(hostname) in 
-    ws6779|lena)         PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
-    *)              PROMPT="%{$fg_no_bold[blue]%}%n|%1~» %{$reset_color%}";;
+    ws6779|yana|lena|yenisei)   PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
+    *)                          PROMPT="%{$fg_no_bold[blue]%}%n|%1~» %{$reset_color%}";;
 esac
 
 autoload -Uz up-line-or-beginning-search
@@ -96,9 +96,7 @@ function up() {
     cd $ups
 }
 
-alias nuto=~/Code/Cpp/nuto
-alias build=~/Code/Cpp/build
-alias gdiff='git diff --color | diff-so-fancy | less -RFX'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # i've done something i've regretted more than once
 alias rm=trash
