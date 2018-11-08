@@ -207,7 +207,7 @@ let g:vimtex_compiler_latexmk = {
 \ 'executable' : 'latexmk',
 \ 'options' : [
 \   '-pdf',
-\   '-pdflatex=lualatex',
+\   '-lualatex',
 \   '-verbose',
 \   '-file-line-error',
 \   '-synctex=1',

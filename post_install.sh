@@ -30,7 +30,7 @@ else
 
 			2)
                 echo "Installing Science stuff"
-                apt install -y texlive python3-dolfin paraview python3-matplotlib python3-scipy
+                apt install -y texlive texlive-pictures texlive-latex-extra python3-dolfin paraview python3-matplotlib python3-scipy
 				;;
     		3)	
 				echo "Installing Desktop packages"
