@@ -23,33 +23,23 @@ Plug 'rhysd/vim-clang-format'
 Plug 'ambv/black'
 " Markdown
 Plug 'plasticboy/vim-markdown'
-" RTags
-Plug 'lyuts/vim-rtags'
 " Commenter
 Plug 'scrooloose/nerdcommenter'
 " Color schemes
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'trusktr/seti.vim'
 " Tables
 Plug 'dhruvasagar/vim-table-mode'
 " TeX
 Plug 'lervag/vimtex'
-" Orgmode
-"Plug 'jceb/vim-orgmode'
-Plug '~/Code/VimL/vim-orgmode'
-" Speeddating
-Plug 'tpope/vim-speeddating'
 " Shell commands from vim, sugarized
 Plug 'tpope/vim-eunuch'
-" Universal text linking
-Plug 'vim-scripts/utl.vim'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 
@@ -67,10 +57,7 @@ let maplocalleader = ' '
 " remap tag following to ü (much better with German/Neo keyboard layout)
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
-
-" fixit
-nmap <Leader>f :YcmCompleter FixIt<CR>
-" toggle line numbers
+"
 " next in quickfix list
 nmap <leader>n :cn<CR>
 
@@ -94,14 +81,12 @@ map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 nmap <leader>pd ofrom<space>IPython<space>import<space>embed;<space>embed()<ESC>
 nmap <leader>m :make<CR>
 
-inoremap ii <esc>
-vnoremap ii <esc>
-cnoremap ii <C-c>
+inoremap nr <esc>
+vnoremap nr <esc>
+cnoremap nr <C-c>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
-
-nnoremap <leader>y :0,$!yapf3<CR>
 
 " Behaviour
 " ---------
@@ -217,35 +202,15 @@ let g:vimtex_compiler_latexmk = {
 \}
 
 " Ack
-let g:ackprg = "ag --ignore doc"
-
-let g:vebugger_leader='<Leader>d'
-
-" Reformat lines (getting the spacing correct)
-fun! TeX_fmt()
-    if (getline(".") != "")
-    let save_cursor = getpos(".")
-        let op_wrapscan = &wrapscan
-        set nowrapscan
-        let par_begin = '^\(%D\)\=\s*\($\|\\label\|\\begin\|\\end\|\\\[\|\\\]\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\|\\noindent\>\)'
-        let par_end   = '^\(%D\)\=\s*\($\|\\label\|\\begin\|\\end\|\\\[\|\\\]\|\\\(sub\)*section\>\|\\item\>\|\\NC\>\|\\blank\>\)'
-    try
-      exe '?'.par_begin.'?+'
-    catch /E384/
-      1
-    endtry
-        norm V
-    try
-      exe '/'.par_end.'/-'
-    catch /E385/
-      $
-    endtry
-    norm gq
-        let &wrapscan = op_wrapscan
-    call setpos('.', save_cursor)
-    endif
-endfun
+let g:ackprg = "ag"
 
 nmap Q :call TeX_fmt()<CR>
 
 let g:syntastic_python_pylint_args="--disable=invalid-name"
+
+nmap ö [
+nmap ä ]
+omap ö [
+omap ä ]
+xmap ö [
+xmap ä ]
