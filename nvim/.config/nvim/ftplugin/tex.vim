@@ -1,3 +1,7 @@
+set foldmethod=expr
+set foldexpr=vimtex#fold#level(v:lnum)
+set foldtext=vimtex#fold#text()
+
 " Reformat paragraphs of TeX, respecting equations and such 
 fun! TeX_fmt()
     if (getline(".") != "")
