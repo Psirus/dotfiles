@@ -104,3 +104,8 @@ alias rm=trash
 function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
 
 . ~/.dotfiles/z/z.sh
+
+if [[ $(hostname -s) = sv2214 ]]; then
+    export LD_LIBRARY_PATH=/home/cpohl/fenics_local/petsc/lib:$LD_LIBRARY_PATH
+    source /home/cpohl/.local/share/dolfin/dolfin.conf
+fi
