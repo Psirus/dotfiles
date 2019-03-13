@@ -36,6 +36,19 @@ Plug 'tpope/vim-eunuch'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
+Plug 'tpope/vim-abolish'
+" Universal text linking
+Plug 'vim-scripts/utl.vim'
+" Repeat
+Plug 'tpope/vim-repeat'
+Plug 'dahu/LearnVim'
+" Debugger
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'idanarye/vim-vebugger'
+" Close all buffers but the current one
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 
