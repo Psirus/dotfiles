@@ -209,3 +209,8 @@ omap ö [
 omap ä ]
 xmap ö [
 xmap ä ]
+
+" have the usual <Esc> behaviour in term windows
+tnoremap <Esc> <C-\><C-n>
+
+nmap <Tab> <C-w>

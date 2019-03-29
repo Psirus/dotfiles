@@ -73,6 +73,8 @@ zle -N zle-line-init
 zle -N zle-line-finish  
 
 # Aliases
+alias d2e='dict -d fd-deu-eng'
+alias e2d='dict -d fd-eng-deu'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias -s pdf='zathura'
