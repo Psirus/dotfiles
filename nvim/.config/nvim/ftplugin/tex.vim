@@ -26,3 +26,5 @@ fun! TeX_fmt()
     call setpos('.', save_cursor)
     endif
 endfun
+
+setlocal makeprg=latexmk\ -lualatex\ -shell-escape\ %

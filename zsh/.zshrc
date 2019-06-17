@@ -20,7 +20,12 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=~/.julia/bin:~/.cargo/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:~/Code/Cpp/rtags/bin:/usr/lib/ccache:/opt/anaconda3/bin:$PATH
+export PATH=/opt/firefox:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
+
+#export GDK_BACKEND=wayland
+#export QT_QPA_PLATFORM=wayland-egl
+#export QT_WAYLAND_FORCE_DPI=109
+#export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -98,8 +103,6 @@ function up() {
     cd $ups
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # i've done something i've regretted more than once
 alias rm=trash
 
@@ -111,3 +114,5 @@ if [[ $(hostname -s) = sv2214 ]]; then
     export LD_LIBRARY_PATH=/home/cpohl/fenics_local/petsc/lib:$LD_LIBRARY_PATH
     source /home/cpohl/.local/share/dolfin/dolfin.conf
 fi
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh

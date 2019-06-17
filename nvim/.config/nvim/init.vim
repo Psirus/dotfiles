@@ -29,8 +29,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'
 " Tables
 Plug 'dhruvasagar/vim-table-mode'
-" TeX
-Plug 'lervag/vimtex'
 " Shell commands from vim, sugarized
 Plug 'tpope/vim-eunuch'
 " Repeat
@@ -39,18 +37,23 @@ Plug 'dahu/LearnVim'
 Plug 'tpope/vim-abolish'
 " Universal text linking
 Plug 'vim-scripts/utl.vim'
-" Repeat
-Plug 'tpope/vim-repeat'
-Plug 'dahu/LearnVim'
 " Debugger
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'idanarye/vim-vebugger'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+"Plug 'idanarye/vim-vebugger'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'neomake/neomake'
+Plug 'SirVer/ultisnips'
+Plug 'lervag/vimtex'
+"Plug 'davidhalter/jedi-vim'
+
 call plug#end()
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsUsePythonVersion = 3
 
 " Appearance
 " ----------
@@ -67,12 +70,21 @@ let maplocalleader = ' '
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
 
+" making moving around easier
+nmap <silent> <leader>i :wincmd h<CR>
+nmap <silent> <leader>a :wincmd j<CR>
+nmap <silent> <leader>l :wincmd k<CR>
+nmap <silent> <leader>e :wincmd l<CR>
+" or: (not sure which i prefer)
+nmap <Tab> <C-w>
+
 " next in quickfix list
 nmap <leader>n :cn<CR>
 
 " Easily switch between files; CRTL+^ is not easily reachable on neo
 nmap <leader>s <C-^>
-" quickly edit my vimrc
+" quickly edit my vimrc (also a global mark V, so 'V is equivalent to
+" <leader>v)
 nmap <leader>v :e ~/.config/nvim/init.vim<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -88,7 +100,7 @@ nnoremap gb :ls<CR>:b<space>
 map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 nmap <leader>pd ofrom<space>IPython<space>import<space>embed;<space>embed()<ESC>
-nmap <leader>m :make<CR>
+nmap <leader>m :make!<CR>
 
 inoremap nr <esc>
 vnoremap nr <esc>
@@ -110,7 +122,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-let g:vimtex_indent_enabled=0
 
 set ttimeout
 set ttimeoutlen=100
@@ -167,6 +178,8 @@ let g:ctrlp_custom_ignore = { 'dir': 'build_doxygen' }
 " ----
 let g:goyo_width = 80
 
+" Tex
+au BufNewFile,BufRead *.tex,*.tikz,*.pgf,*.cls,*.sty set filetype=tex
 
 " Markdown
 " --------
@@ -174,27 +187,6 @@ let g:goyo_width = 80
 au BufNewFile,BufRead *.page set filetype=markdown
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
-
-
-" vimtex
-" ------
-let g:vimtex_compiler_latexmk = {
-\ 'backend' : 'nvim',
-\ 'background' : 1,
-\ 'build_dir' : '',
-\ 'callback' : 1,
-\ 'continuous' : 1,
-\ 'executable' : 'latexmk',
-\ 'options' : [
-\   '-pdf',
-\   '-lualatex',
-\   '-verbose',
-\   '-file-line-error',
-\   '-synctex=1',
-\   '-shell-escape',
-\   '-interaction=nonstopmode',
-\ ],
-\}
 
 " Ack
 let g:ackprg = "ag"
@@ -213,4 +205,3 @@ xmap ä ]
 " have the usual <Esc> behaviour in term windows
 tnoremap <Esc> <C-\><C-n>
 
-nmap <Tab> <C-w>
