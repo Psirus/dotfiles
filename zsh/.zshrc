@@ -20,7 +20,7 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=/opt/firefox:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
+export PATH=~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
 
 #export GDK_BACKEND=wayland
 #export QT_QPA_PLATFORM=wayland-egl
