@@ -20,12 +20,7 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
-
-#export GDK_BACKEND=wayland
-#export QT_QPA_PLATFORM=wayland-egl
-#export QT_WAYLAND_FORCE_DPI=109
-#export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export PATH=~/.julia/bin:~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 

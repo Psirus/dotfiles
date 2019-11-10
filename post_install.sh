@@ -34,7 +34,7 @@ else
 				;;
     		3)	
 				echo "Installing Desktop packages"
-				apt install -y telegram-desktop arc-theme moka-icon-theme gnome-tweaks mpv
+				apt install -y telegram-desktop gnome-tweaks mpv
 				;;
             4)
                 echo "Installing Audio packages"

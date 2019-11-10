@@ -31,6 +31,7 @@ Plug 'morhetz/gruvbox'
 Plug 'dhruvasagar/vim-table-mode'
 " Shell commands from vim, sugarized
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
@@ -204,4 +205,3 @@ xmap ä ]
 
 " have the usual <Esc> behaviour in term windows
 tnoremap <Esc> <C-\><C-n>
-
