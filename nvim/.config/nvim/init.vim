@@ -45,16 +45,25 @@ Plug 'vim-scripts/utl.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
 "Plug 'vim-syntastic/syntastic'
-"Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
 "Plug 'davidhalter/jedi-vim'
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'simnalamburt/vim-mundo'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsUsePythonVersion = 3
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#python_path="/usr/bin/python3"
+let g:deoplete#sources#jedi#show_docstring=1
+call deoplete#custom#option('auto_complete_delay', 1)
 
 " Appearance
 " ----------
@@ -130,7 +139,7 @@ set ttimeoutlen=100
 " Delete comment character when joining commented lines
 set formatoptions+=j 
 
-set incsearch
+"set incsearch
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.config/nvim/tmp,.
 set directory=~/.config/nvim/tmp,.
@@ -143,7 +152,7 @@ set path=.;$HOME
 
 set clipboard+=unnamedplus
 
-set inccommand=split
+"set inccommand=split
 
 set mouse=a
 
@@ -205,3 +214,6 @@ xmap ä ]
 
 " have the usual <Esc> behaviour in term windows
 tnoremap <Esc> <C-\><C-n>
+
+" show undo tree
+nnoremap <F5> :MundoToggle<CR>
