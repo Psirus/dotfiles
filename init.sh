@@ -5,6 +5,5 @@ if [[ ! -d ~/.config/nvim/tmp ]]; then
 fi
 stow nvim
 stow git
-stow systemd
 stow zsh
 stow mpd
