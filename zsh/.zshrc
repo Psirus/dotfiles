@@ -21,6 +21,7 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
 export PATH=~/.julia/bin:~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
+export EDITOR=nvim
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
@@ -75,7 +76,7 @@ zle -N zle-line-finish
 # Aliases
 alias d2e='dict -d fd-deu-eng'
 alias e2d='dict -d fd-eng-deu'
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 alias ll='ls -lh'
 alias -s pdf='zathura'
 alias :q='exit'
