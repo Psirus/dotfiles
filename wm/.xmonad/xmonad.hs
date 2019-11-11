@@ -17,7 +17,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 myTerminal :: String
-myTerminal = "gnome-terminal"
+myTerminal = "xfce4-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -59,6 +59,7 @@ amixer hostname = "amixer " ++ card ++ "set Master "
         card = case hostname of
             "psirus-laptop" -> "-c 1 "
             "psirus-desktop" -> "-c 0 "
+            "ws6779" ->  "-c 1 "
 
 raiseVolume hostname = spawn $ amixer hostname ++ "3dB+"
 lowerVolume hostname = spawn $ amixer hostname ++ "3dB-"
@@ -184,11 +185,8 @@ myEventHook = ewmhDesktopsEventHook <+> docksEventHook
 -- needed for Java Applications to work with XMonad
 myStartupHook hostname = ewmhDesktopsStartup <+> spawn "compton" <+> setWMName "LG3D" <+> docksStartupHook
 
-myXmonadBar = "xmobar"
-
 main = do
     hostname <- fmap nodeName getSystemID
-    xmobar <- spawnPipe myXmonadBar
     xmonad $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -203,6 +201,6 @@ main = do
         layoutHook         = myLayout,
         manageHook         = manageDocks <+> myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook xmobar <+> (dynamicLogString titlePP >>= xmonadPropLog),
+        --logHook            = myLogHook xmobar <+> (dynamicLogString titlePP >>= xmonadPropLog),
         startupHook        = myStartupHook hostname
         }
