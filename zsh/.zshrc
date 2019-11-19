@@ -20,7 +20,7 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=~/.julia/bin:~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/Code/Bash:$PATH
+export PATH=~/.julia/bin:~/.nimble/bin:~/.cabal/bin:~/.local/bin:~/.dotfiles/bash:$PATH
 export EDITOR=nvim
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

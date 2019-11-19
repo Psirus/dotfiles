@@ -1,0 +1,1 @@
+rsync -r -P -u --delete --exclude=Netzwerk --exclude=.cache --exclude=.ccache --exclude=.icons --exclude=.local/share/icons --exclude=.local/share/Trash --exclude=.local/share/Zeal /home/cpohl /home/cpohl/Netzwerk/DriveZ/06_Data_Safety/cpohl/backup
