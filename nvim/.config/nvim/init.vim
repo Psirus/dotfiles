@@ -139,7 +139,7 @@ set ttimeoutlen=100
 " Delete comment character when joining commented lines
 set formatoptions+=j 
 
-"set incsearch
+set incsearch
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.config/nvim/tmp,.
 set directory=~/.config/nvim/tmp,.
@@ -152,7 +152,7 @@ set path=.;$HOME
 
 set clipboard+=unnamedplus
 
-"set inccommand=split
+set inccommand=split
 
 set mouse=a
 
