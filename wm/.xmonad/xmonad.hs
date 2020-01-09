@@ -77,7 +77,7 @@ myKeys hostname conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- close focused window
     , ((modm,               xK_F4    ), kill)
 
-    , ((0, xK_F1), spawn "zeal")
+    --    , ((0, xK_F1), spawn "zeal")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)

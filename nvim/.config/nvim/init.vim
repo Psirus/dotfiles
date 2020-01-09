@@ -38,9 +38,6 @@ Plug 'dahu/LearnVim'
 Plug 'tpope/vim-abolish'
 " Universal text linking
 Plug 'vim-scripts/utl.vim'
-" Debugger
-"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-"Plug 'idanarye/vim-vebugger'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
@@ -48,22 +45,13 @@ Plug 'tpope/vim-surround'
 Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
-"Plug 'davidhalter/jedi-vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'simnalamburt/vim-mundo'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsUsePythonVersion = 3
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#python_path="/usr/bin/python3"
-let g:deoplete#sources#jedi#show_docstring=1
-call deoplete#custom#option('auto_complete_delay', 1)
 
 " Appearance
 " ----------
@@ -217,3 +205,5 @@ tnoremap <Esc> <C-\><C-n>
 
 " show undo tree
 nnoremap <F5> :MundoToggle<CR>
+
+let g:org_indent=4

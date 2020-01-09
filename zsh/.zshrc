@@ -112,3 +112,5 @@ if [[ $(hostname -s) = sv2214 ]]; then
 fi
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+alias vim='nvim -u ~/Code/vim/sensible.vim'
