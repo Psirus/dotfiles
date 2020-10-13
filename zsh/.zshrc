@@ -113,4 +113,8 @@ fi
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
+export FZF_DEFAULT_COMMAND="rg -g '!Netzwerk' --files ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 alias vim='nvim -u ~/Code/vim/sensible.vim'
+alias tlmgr='sudo env PATH=$PATH tlmgr'

@@ -29,7 +29,7 @@ Plug 'morhetz/gruvbox'
 Plug 'dhruvasagar/vim-table-mode'
 " Shell commands from vim, sugarized
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
@@ -38,7 +38,6 @@ Plug 'tpope/vim-abolish'
 Plug 'vim-scripts/utl.vim'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'tpope/vim-surround'
 Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
