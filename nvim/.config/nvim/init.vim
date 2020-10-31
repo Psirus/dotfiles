@@ -15,8 +15,6 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
-" Distraction free writing
-Plug 'junegunn/goyo.vim'
 " Clang format
 Plug 'rhysd/vim-clang-format'
 " Black - Python formatter
@@ -41,17 +39,8 @@ Plug 'vim-scripts/utl.vim'
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-surround'
-"Plug 'vim-syntastic/syntastic'
-Plug 'neomake/neomake'
-Plug 'SirVer/ultisnips'
-Plug 'lervag/vimtex'
-Plug 'JuliaEditorSupport/julia-vim'
 Plug 'simnalamburt/vim-mundo'
 call plug#end()
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsUsePythonVersion = 3
 
 " Appearance
 " ----------
@@ -160,24 +149,12 @@ let g:lightline = {
       \            [ 'filetype' ]] }
       \ }
 
-" Clang Format
-" ------------
-let g:clang_format#detect_style_file = 1
-let g:clang_format#auto_format = 0
-
 " CTRL-P
 " ------
 " I have submodules in git, and if you are in a 'sub' file it won't find
 " 'parent' files
 let g:ctrlp_working_path_mode = 'rwa'
 let g:ctrlp_custom_ignore = { 'dir': 'build_doxygen' }
-
-" Goyo
-" ----
-let g:goyo_width = 80
-
-" Tex
-au BufNewFile,BufRead *.tex,*.tikz,*.pgf,*.cls,*.sty set filetype=tex
 
 " Markdown
 " --------
@@ -190,8 +167,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:ackprg = "ag"
 
 nmap Q :call TeX_fmt()<CR>
-
-let g:syntastic_python_pylint_args="--disable=invalid-name"
 
 nmap ö [
 nmap ä ]

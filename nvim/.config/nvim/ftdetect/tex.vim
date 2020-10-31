@@ -1,3 +1,1 @@
-autocmd BufNewFile,BufRead *.tikz setfiletype tex
-autocmd BufNewFile,BufRead *.cls setfiletype tex
-autocmd BufNewFile,BufRead *.tex setfiletype tex
+autocmd BufNewFile,BufRead *.tex,*.tikz,*.pgf,*.cls,*.sty set filetype=tex
