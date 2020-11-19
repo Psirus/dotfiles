@@ -3,42 +3,23 @@
 call plug#begin('~/.config/nvim/plugged')
 " Nice status line
 Plug 'itchyny/lightline.vim'
-" Different cursor shape depending on mode
-Plug 'jszakmeister/vim-togglecursor'
 " Easy aligning of tables etc
 Plug 'junegunn/vim-easy-align'
-" CRTLP - fuzzy file finder
-Plug 'ctrlpvim/ctrlp.vim'
-" Ack
-Plug 'mileszs/ack.vim'
-" Git Wrapper
-Plug 'tpope/vim-fugitive'
 " Improve netrw
 Plug 'tpope/vim-vinegar'
-" Clang format
-Plug 'rhysd/vim-clang-format'
-" Black - Python formatter
-Plug 'ambv/black'
-" Markdown
-Plug 'plasticboy/vim-markdown'
 " Commenter
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 " Color schemes
 Plug 'morhetz/gruvbox'
 " Tables
 Plug 'dhruvasagar/vim-table-mode'
 " Shell commands from vim, sugarized
 Plug 'tpope/vim-eunuch'
-"Plug 'tpope/vim-surround'
 " Repeat
 Plug 'tpope/vim-repeat'
 Plug 'dahu/LearnVim'
-Plug 'tpope/vim-abolish'
-" Universal text linking
-Plug 'vim-scripts/utl.vim'
-" Close all buffers but the current one
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'simnalamburt/vim-mundo'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Appearance
@@ -88,10 +69,6 @@ map gc :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 nmap <leader>pd ofrom<space>IPython<space>import<space>embed;<space>embed()<ESC>
 nmap <leader>m :make!<CR>
 
-inoremap nr <esc>
-vnoremap nr <esc>
-cnoremap nr <C-c>
-
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 
@@ -116,6 +93,8 @@ set ttimeoutlen=100
 set formatoptions+=j 
 
 set incsearch
+set inccommand=split
+
 " write ~ and .swp wiles to tmp directory
 set backupdir=~/.config/nvim/tmp,.
 set directory=~/.config/nvim/tmp,.
@@ -127,8 +106,6 @@ set undodir=~/.config/nvim/tmp
 set path=.;$HOME
 
 set clipboard+=unnamedplus
-
-set inccommand=split
 
 set mouse=a
 
@@ -148,25 +125,6 @@ let g:lightline = {
       \            [ 'filetype' ]] }
       \ }
 
-" CTRL-P
-" ------
-" I have submodules in git, and if you are in a 'sub' file it won't find
-" 'parent' files
-let g:ctrlp_working_path_mode = 'rwa'
-let g:ctrlp_custom_ignore = { 'dir': 'build_doxygen' }
-
-" Markdown
-" --------
-" gitit pages are markdown as well
-au BufNewFile,BufRead *.page set filetype=markdown
-let g:vim_markdown_math = 1
-let g:vim_markdown_folding_disabled = 1
-
-" Ack
-let g:ackprg = "ag"
-
-nmap Q :call TeX_fmt()<CR>
-
 nmap ö [
 nmap ä ]
 omap ö [
@@ -175,9 +133,9 @@ xmap ö [
 xmap ä ]
 
 " have the usual <Esc> behaviour in term windows
-tnoremap <Esc> <C-\><C-n>
+au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+au FileType fzf tunmap <buffer> <Esc>
 
-" show undo tree
-nnoremap <F5> :MundoToggle<CR>
-
-let g:org_indent=4
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>c<space> <plug>NERDCommenterToggle
+vmap <leader>c<space> <plug>NERDCommenterToggle

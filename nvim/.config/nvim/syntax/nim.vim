@@ -1,3 +1,15 @@
+if has_key(g:polyglot_is_disabled, 'nim')
+  finish
+endif
+
+" For version 5.x: Clear all syntax items
+" For version 6.x: Quit when a syntax file was already loaded
+if v:version < 600
+  syntax clear
+elseif exists('b:current_syntax')
+  finish
+endif
+
 " Keep user-supplied options
 if !exists('nim_highlight_numbers')
   let nim_highlight_numbers = 1
