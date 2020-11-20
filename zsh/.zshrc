@@ -102,18 +102,6 @@ function up() {
 # i've done something i've regretted more than once
 alias rm=trash
 
-function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
-
-. ~/.dotfiles/z/z.sh
-
-if [[ $(hostname -s) = sv2214 ]]; then
-    export LD_LIBRARY_PATH=/home/cpohl/fenics_local/petsc/lib:$LD_LIBRARY_PATH
-    source /home/cpohl/.local/share/dolfin/dolfin.conf
-fi
-
-export FZF_DEFAULT_COMMAND="rg -g '!Netzwerk' --files ."
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 alias vim='nvim -u ~/Code/vim/sensible.vim'
 alias tlmgr='sudo env PATH=$PATH tlmgr'
 
