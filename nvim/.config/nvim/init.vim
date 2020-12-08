@@ -139,3 +139,5 @@ au FileType fzf tunmap <buffer> <Esc>
 let g:NERDCreateDefaultMappings = 0
 nmap <leader>c<space> <plug>NERDCommenterToggle
 vmap <leader>c<space> <plug>NERDCommenterToggle
+
+nmap <leader>f :Files<CR>

@@ -20,14 +20,17 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=~/Code/Bash:~/.cargo/bin:~/.nimble/bin:~/.local/bin:~/.dotfiles/bash:$PATH
+export PATH=~/Code/Bash:~/.cargo/bin:~/.nimble/bin:~/.local/bin:~/.dotfiles/bash:/usr/local/texlive/2020/bin/x86_64-linux:$PATH
 export EDITOR=nvim
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
-export TEXINPUTS=.:~/Work/writing/slides/BAM_CD/:$TEXINPUTS
+case $(hostname) in
+    ws6779) export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS;;
+    yana|lena) export TEXINPUTS=.:~/Work/writing/slides/BAM_CD/:$TEXINPUTS;;
+esac
 
 case $(hostname) in 
     ws6779|yana|lena|yenisei)   PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
