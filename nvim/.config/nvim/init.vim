@@ -44,10 +44,19 @@ nnoremap <leader>v :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 " Python debugging
 nnoremap <leader>pd ofrom<space>IPython<space>import<space>embed;<space>embed()<ESC>
+" Well, make
 nnoremap <leader>m :make!<CR>
+" Toggle comment
 nnoremap <leader>c :Commentary<CR>
+" All files
+nnoremap <leader>a :Files~<CR>
+" Files in cwd
 nnoremap <leader>f :Files<CR>
+" Files in git
 nnoremap <leader>F :GFiles<CR>
+
+" Search in all files
+nnoremap ∫ :Rg<space>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
@@ -62,11 +71,13 @@ au FileType fzf tnoremap <buffer> <Esc> <c-c>
 set scrolloff=10
 
 " Indentation
-set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" break line at suitable character
+set linebreak
 
 " Delete comment character when joining commented lines
 set formatoptions+=j 
