@@ -7,3 +7,4 @@ stow nvim
 stow git
 stow zsh
 stow mpd
+stow doom
