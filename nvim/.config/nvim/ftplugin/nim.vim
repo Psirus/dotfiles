@@ -1,4 +1,4 @@
-setlocal makeprg=nim\ c\ --run\ %
+setlocal makeprg=nim\ c\ --run\ --outdir:bin\ %
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2

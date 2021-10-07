@@ -20,7 +20,7 @@ DIRSTACKSIZE=10
 setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
-export PATH=~/Code/Bash:~/.cargo/bin:~/.nimble/bin:~/.local/bin:~/.dotfiles/bash:/usr/local/texlive/2020/bin/x86_64-linux:$PATH
+export PATH=~/Code/Bash:~/.nimble/bin:~/Code/nim/nim/bin:~/.local/bin:~/.dotfiles/bash:~/.cargo/bin:$PATH
 export EDITOR=nvim
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
@@ -67,14 +67,14 @@ key[PageDown]=${terminfo[knp]}
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
-function zle-line-init () {
-    echoti smkx
-}
-function zle-line-finish () {
-    echoti rmkx
-}
-zle -N zle-line-init
-zle -N zle-line-finish  
+# function zle-line-init () {
+#     echoti smkx
+# }
+# function zle-line-finish () {
+#     echoti rmkx
+# }
+# zle -N zle-line-init
+# zle -N zle-line-finish  
 
 # Aliases
 alias d2e='dict -d fd-deu-eng'
@@ -105,9 +105,11 @@ function up() {
 # i've done something i've regretted more than once
 alias rm=trash
 
-alias tlmgr='sudo env PATH=$PATH tlmgr'
+# alias nvim="emacs -nw"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias get_idf='. ~/Code/C/eps-idf4.0/export.sh'
+
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0232323" #black
