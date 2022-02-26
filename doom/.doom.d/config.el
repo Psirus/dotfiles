@@ -66,10 +66,8 @@
 
 (set-frame-parameter (selected-frame) 'alpha '(96 . 96))
 (add-to-list 'default-frame-alist '(alpha . (96 . 96)))
-(set-frame-parameter (selected-frame) 'fullscreen 'fullscreen)
+;; (set-frame-parameter (selected-frame) 'fullscreen 'fullscreen)
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-; (server-start)
 
 (setq pyimport-pyflakes-path "/usr/bin/pyflakes3")
 

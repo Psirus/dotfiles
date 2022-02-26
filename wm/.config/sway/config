@@ -196,4 +196,4 @@ include /etc/sway/config.d/*
 
 exec gammastep -l 52:13
 
-exec emacs
+exec emacs --daemon

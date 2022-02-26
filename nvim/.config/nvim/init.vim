@@ -14,8 +14,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 " Tables
 Plug 'dhruvasagar/vim-table-mode'
-" LSP
-Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 " Mappings
@@ -123,7 +121,3 @@ let g:lightline = {
     \             ['percent'],
     \             ['filetype']] }
     \ }
-
-lua << EOF
-require'lspconfig'.nimls.setup{}
-EOF
