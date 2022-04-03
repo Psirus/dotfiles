@@ -64,11 +64,10 @@
 ;; they are implemented.
 (setq confirm-kill-emacs nil)
 
-(set-frame-parameter (selected-frame) 'alpha '(96 . 96))
-(add-to-list 'default-frame-alist '(alpha . (96 . 96)))
-;; (set-frame-parameter (selected-frame) 'fullscreen 'fullscreen)
-;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 (setq pyimport-pyflakes-path "/usr/bin/pyflakes3")
 
 (map! :n "-" 'dired-jump)
+
+(setq gdscript-godot-executable "/home/psirus/Downloads/Godot_v3.4.4-stable_x11.64")
+
+(setq flyspell-default-dictionary "en")

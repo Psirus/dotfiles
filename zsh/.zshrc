@@ -84,9 +84,9 @@ alias ll='ls -lh'
 alias -s pdf='zathura'
 alias :q='exit'
 
-emacs() {
-    emacsclient -c -a emacs $1 &
-}
+# emacs() {
+#     emacsclient -c -a emacs $1 &
+# }
 
 function gitsearch() {
     git grep "$*" $(git rev-list --all)
