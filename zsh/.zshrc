@@ -21,11 +21,27 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 alias dh='dirs -v'
 
 export PATH=~/Code/Bash:~/.nimble/bin:~/Code/nim/nim/bin:~/.local/bin:~/.dotfiles/bash:~/.cargo/bin:$PATH
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
 export EDITOR=nvim
 
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+__conda_setup="$('/Users/pohl/.miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/pohl/.miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/pohl/.miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/pohl/.miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 
-export MANPAGER="nvim -c 'set ft=man' -"
+if [ -f "/Users/pohl/.miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/Users/pohl/.miniforge3/etc/profile.d/mamba.sh"
+fi
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 case $(hostname) in
     ws6779) export TEXINPUTS=.:~/Dokumente/writing/slides/BAM_CD/:$TEXINPUTS;;
@@ -36,34 +52,39 @@ case $(hostname) in
     ws6779|yana|lena|yenisei)   PROMPT="%{$fg_no_bold[red]%}%n|%1~» %{$reset_color%}";;
     *)                          PROMPT="%{$fg_no_bold[blue]%}%n|%1~» %{$reset_color%}";;
 esac
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
 
-autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-typeset -A key
+# autoload -Uz up-line-or-beginning-search
+# autoload -Uz down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# typeset -A key
 
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
+# key[Home]=${terminfo[khome]}
+# key[End]=${terminfo[kend]}
+# key[Insert]=${terminfo[kich1]}
+# key[Delete]=${terminfo[kdch1]}
+# key[Up]=${terminfo[kcuu1]}
+# key[Down]=${terminfo[kcud1]}
+# key[Left]=${terminfo[kcub1]}
+# key[Right]=${terminfo[kcuf1]}
+# key[PageUp]=${terminfo[kpp]}
+# key[PageDown]=${terminfo[knp]}
 
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-# go up/down searching through the history with what you have typed so far
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-beginning-search
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-beginning-search
+# # setup key accordingly
+# [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+# [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+# [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+# [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+# [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+# [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+# # go up/down searching through the history with what you have typed so far
+# [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-beginning-search
+# [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-beginning-search
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -79,7 +100,10 @@ key[PageDown]=${terminfo[knp]}
 # Aliases
 alias d2e='dict -d fd-deu-eng'
 alias e2d='dict -d fd-eng-deu'
-alias ls='ls --color=auto --group-directories-first'
+case $(hostname) in
+    ws6779|yana|lena|yenisei)   alias ls='ls --color=auto --group-directories-first';;
+    *)                          alias ls='ls --color=auto -G';;
+esac
 alias ll='ls -lh'
 alias -s pdf='zathura'
 alias :q='exit'
@@ -141,3 +165,13 @@ fi
 
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+source <(fzf --zsh)
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/pohl/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
